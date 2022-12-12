@@ -1,0 +1,715 @@
+[
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2022-11-15T19:43:59.939Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "1",
+        "object_repr": "brazil team",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2022-11-15T19:44:05.806Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "أسطورة البرازيل كافو يحتفي بمرور 20 عاماً",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2022-11-16T08:58:01.171Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "أسطورة البرازيل كافو يحتفي بمرور 20 عاماً",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Description\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2022-11-16T16:03:36.709Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "أسطورة البرازيل كافو يحتفي بمرور 20 عاماً",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2022-11-16T16:16:18.506Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "1",
+        "object_repr": "الرياضات الجماعية",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2022-11-16T16:16:36.974Z",
+        "user": 1,
+        "content_type": 8,
+        "object_id": "2",
+        "object_repr": "كرة القدم",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2022-11-16T16:18:09.238Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "أسطورة البرازيل كافو يحتفي بمرور 20 عاماً",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2022-11-16T16:19:48.860Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "أسطورة البرازيل كافو يحتفي بمرور 20 عاماً",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Description\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2022-11-17T08:19:29.012Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "1",
+        "object_repr": "أسطورة البرازيل كافو يحتفي بمرور 20 عاماً",
+        "action_flag": 2,
+        "change_message": "[]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2022-11-17T08:21:47.233Z",
+        "user": 1,
+        "content_type": 7,
+        "object_id": "2",
+        "object_repr": "Qatar_tickets",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2022-11-17T08:22:11.677Z",
+        "user": 1,
+        "content_type": 9,
+        "object_id": "2",
+        "object_repr": "انطلاق مبيعات تذاكر كأس العالم قطر 2022",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2022-12-06T09:44:40.795Z",
+        "user": 3,
+        "content_type": 7,
+        "object_id": "3",
+        "object_repr": "barca_players",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2022-12-06T09:44:47.209Z",
+        "user": 3,
+        "content_type": 9,
+        "object_id": "3",
+        "object_repr": "الدوري الإسباني  5 لاعبين على وشك الرحيل من برشلونة !",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+        "name": "Can add permission",
+        "content_type": 2,
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+        "name": "Can change permission",
+        "content_type": 2,
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": 2,
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+        "name": "Can view permission",
+        "content_type": 2,
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+        "name": "Can add group",
+        "content_type": 3,
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+        "name": "Can change group",
+        "content_type": 3,
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+        "name": "Can delete group",
+        "content_type": 3,
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+        "name": "Can view group",
+        "content_type": 3,
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+        "name": "Can add user",
+        "content_type": 4,
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+        "name": "Can change user",
+        "content_type": 4,
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+        "name": "Can delete user",
+        "content_type": 4,
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+        "name": "Can view user",
+        "content_type": 4,
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": 5,
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 5,
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 5,
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": 5,
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 6,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 6,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 6,
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view session",
+        "content_type": 6,
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add image",
+        "content_type": 7,
+        "codename": "add_image"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change image",
+        "content_type": 7,
+        "codename": "change_image"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete image",
+        "content_type": 7,
+        "codename": "delete_image"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view image",
+        "content_type": 7,
+        "codename": "view_image"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Can add category",
+        "content_type": 8,
+        "codename": "add_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Can change category",
+        "content_type": 8,
+        "codename": "change_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can delete category",
+        "content_type": 8,
+        "codename": "delete_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can view category",
+        "content_type": 8,
+        "codename": "view_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can add article",
+        "content_type": 9,
+        "codename": "add_article"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can change article",
+        "content_type": 9,
+        "codename": "change_article"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can delete article",
+        "content_type": 9,
+        "codename": "delete_article"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can view article",
+        "content_type": 9,
+        "codename": "view_article"
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$oHtQfwWHoqCEZGcJU90yxe$H791R6DFZsgPi8xHqfFWV8+YfZTqWj2kZCl8GcOZw0o=",
+        "last_login": "2022-11-15T19:31:11.574Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2022-11-15T19:31:01.007Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$hWKuT9WetEsnFmtq9fznSB$22ShGO67un+/Ks+/2+FfLj7mhJCKZhWaD4lgqJ3lWec=",
+        "last_login": null,
+        "is_superuser": true,
+        "username": "fbv",
+        "first_name": "",
+        "last_name": "",
+        "email": "try@try.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2022-12-06T09:32:34.232Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$FcdKFUA5rVIOjsmYIHQMiq$Ul/Bk3EcNxTWVJj6eXWUKrB3abiKiYq3kr6dqwMzZEA=",
+        "last_login": "2022-12-06T09:34:46.470Z",
+        "is_superuser": true,
+        "username": "sidou",
+        "first_name": "",
+        "last_name": "",
+        "email": "try@try.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2022-12-06T09:34:04.177Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+        "app_label": "auth",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+        "app_label": "core",
+        "model": "image"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "core",
+        "model": "category"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+        "app_label": "core",
+        "model": "article"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "6iqjhnk53nk2fste443y4d3glxqpwybl",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAUBf-FtSFQHgWX7v0Gch8gVUOT0q6M_65NutDtmZnzEgm2taat5yVNLM5Ci9PvhkCP3HbAd2i3WdLc1mVCuSvyoF1eZ87Py-H-HVTo9VtjQa8GiojF6ziy9wbDaKxhS5jJDgUKGs1sGINSxbmYPWqjlKMYA4j3BwDOOF4:1ov1eJ:ZF71M0wSXr9Bvg9x2jZA7tqW2ddY4laequCmKERfis0",
+        "expire_date": "2022-11-29T19:31:11.597Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "e5uobnd4y012xb3c9uwxzki10w66xb9d",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hDoFDq4dO8ZyDCAVA0kpV0Z765NutDtf-_9l_C0rcVvPS1-juIsQJx-t0D8SHUH8U711iS3ui5zkLsiD9rltcX0vBzu30GhXr41ZrKYJ-O0tWYwaVAROYHjUQXUwIoig1aQWTmL5DJrDIrdOEV0QYN4fwDUDjd-:1p2ULe:jTeCFqX_k1ol-b6ZlinrLnUZwk47z8KkWVrx9py-pWw",
+        "expire_date": "2022-12-20T09:34:46.509Z"
+    }
+},
+{
+    "model": "core.image",
+    "pk": 1,
+    "fields": {
+        "title": "brazil team",
+        "image": "brazil_team.jpg"
+    }
+},
+{
+    "model": "core.image",
+    "pk": 2,
+    "fields": {
+        "title": "Qatar_tickets",
+        "image": "Qtar_tickets.jpg"
+    }
+},
+{
+    "model": "core.image",
+    "pk": 3,
+    "fields": {
+        "title": "barca_players",
+        "image": "barca_players.jpg"
+    }
+},
+{
+    "model": "core.category",
+    "pk": 1,
+    "fields": {
+        "name": "الرياضات الجماعية",
+        "description": "",
+        "parent": null
+    }
+},
+{
+    "model": "core.category",
+    "pk": 2,
+    "fields": {
+        "name": "كرة القدم",
+        "description": "",
+        "parent": 1
+    }
+},
+{
+    "model": "core.article",
+    "pk": 1,
+    "fields": {
+        "title": "أسطورة البرازيل كافو يحتفي بمرور 20 عاماً",
+        "description": "<p style=\"padding-left: 40px; text-align: right;\">اعتباره اللاعب الوحيد في العالم الذي حقق هذا الإنجاز. وفي حوار لموقع (Qatar2022.qa) بمناسبة مرور 20 عاماً على رفع الأسطورة البرازيلية آخر كأس عالم توِّج بها منتخب السامبا، بعد الفوز على الماكينات الألمانية بهدفين نظيفين بتوقيع الأسطورة رونالدو في مونديال 2002 على استاد يوكوهاما باليابان، وصف كافو هذه اللحظة بالتاريخية في مسيرته الكروية، وقال إنها ستطل حيَّة في ذاكرته طوال العمر. وكانت المباراة النهائية في كأس العالم 2002 هي النهائي المونديالي الثالث الذي شارك فيه الظهر الأيمن للسامبا، بعد أن سجَّل ظهوره الأول في نهائي مونديال 1994، وتوجّ فيه باللقب مع منتخب بلاده على حساب إيطاليا، قبل أن يخسر بعدها بأربع سنوات في نهائي مونديال 1998 أمام فرنسا. وحول هذه المشاركات الثلاث التي لم يسبقه إليها لاعب آخر، قال نجم السيليساو إن التتويج بلقب كأس العالم في نسختي 1994 و2002 من المحطات الفارقة في حياته، فالأول ضمن له تحقيق أكبر أحلامه وهو لا يزال في الرابعة والعشرين من عمره، أما الثاني فوصفه بأنه له مكانة خاصة في قلبه، وقال: \"لو خُيّرت بين اللقبين، سأختار الثاني، لأنني كانت قائداً وقتها للمنتخب البرازيلي.\" أما نهائي مونديال 1998، الذي عاند فيه الحظ زملاء كافو بعد أن أمطر المنتخب الفرنسي شباكهم بثلاثية نظيفة، فعلّق عليه كافو بقوله إن الخسارة جزء من كرة القدم، وبرغم مرارة تلك الهزيمة وصعوبة تقبلها آنذاك، إلا إنها كانت دافعاً كبيراً لهم للعودة من بلاد الساموراي بعدها بأربع سنوات وهم يحملون كأس العالم للمرة الخامسة. وبالعودة لنهائي مونديال 2022، أشار نجم منتخب السامبا إلى أنه لم يكن يفكر سوى في الفوز بالمباراة ورفع الكأس، خاصة وأن المنتخب البرازيلي كان صاحب الحظ الأوفر. وحول أجواء هذه المباراة، قال كافو: \"أهم ما تحمله ذاكرتي عن هذه المباراة هي اللحظة التي رفعت فيها الكأس وما صاحبها من احتفالات بإضافة لقب جديد في سجل انتصاراتنا. كانت تلك اللحظة من أفضل الأوقات في مسيرتي الكروية.\" وواصل قائد المنتخب البرازيلي في مونديال 2002 كشف كواليس هذا اللقاء، قائلاً إنه ظلّ يلهب حماس زملائه قبل المباراة، مطالباً إياهم بالمحافظة على نفس الأداء الذي مكَّنهم من الوصول للمباراة النهائية، وأن يبذلوا أقصى ما لديهم في الملعب. ووصف شعوره بعد سماع صفارة الحكم معلناً فوز منتخب السامبا على الماكينات الألمانية بأنه \"كان شعوراً ممزوجاً بالسعادة والبهجة والإنجاز، وتعجز الكلمات عن وصفه.\" وعن تقييمه لأداء المنتخب البرازيلي الحالي وفرص حصوله على لقب مونديال قطر هذا العام، قال أسطورة كرة القدم البرازيلية إنه فريق ممتاز، يجمع بين الخبرة والشباب، ويضم العديد من اللاعبين الذين يمثلون ركائز أساسية في أنديتهم، ولهم تاريخ حافل بالبطولات على مستوى الأندية والمنتخب الوطني، وأضاف: \"منتخبنا لديه فرصه كبيرة للفوز بمونديال قطر. اللاعبون متحمسون، وأتمنى من كل قلبي أن يلبوا توقعاتنا وأن يقدموا أداء مشرفاً يليق باسم الكرة البرازيلية.\" وأشاد كافو بالعديد من لاعبي منتخب البرازيل، وفي مقدمتهم نجمي نادي ريال مدريد الإسباني فينيسيوس ورودريغو، وقال إن كلاهما يؤدي أداء مميزاً مع بطل أوروبا، وقال لو واصل هذان اللاعبان وغيرهما من زملائهما في الفريق الحفاظ على مستواهم حتى انطلاق مونديال قطر، ستزداد فرص منتخب السامبا للتتويج بالمونديال، لكنه لفت إلى أنه رغم المستويات المذهلة الحالية لفينيسيوس ورودريغو، لا يزال أمامهما خمسة أشهر قبل المشاركة في المونديال، ولا أحد يعلم ما الذي سيحدث خلال هذه الفترة. واختتم سفير برنامج إرث قطر حديثه عن المونديال المقبل، داعياً الجماهير إلى السفر إلى قطر لحضور أكبر حدث رياضي على مستوى العالم، والذي يقام للمرة الأولى في الشرق الأوسط، وقال موجهاً حديثه لمشجعي كرة القدم: \"من واقع تجربتي العملية، ستجدون كل المحبة والترحاب هنا في قطر، فالبلد يفتح ذراعيه أمام الجماهير من مختلف أنحاء العالم.\" وأضاف كافو أن هذه البطولة ستتيح فرصة رائعة أمام الكثير من الجماهير لاستكشاف منطقة جديدة من العالم لم يعرفوا عنها الكثير، وتابع: \"هذه فرصتكم للاستمتاع بأفضل لاعبي العالم وهم يخوضون منافسات المونديال في ملاعب مذهلة صُمِمت خصيصاً لتوفير أفضل تجربه للاعبين والمشجعين. كل مشجع يمنّى نفسه بفوز منتخبه بكأس العالم، فتخيلوا إن حقق منتخبكم هذا الحلم وأنتم تحتفلون معه داخل الاستاد بصبحة أصدقائكم وأقاربكم. بالتأكيد، ستكون ذكريات لا تنسى.\" يشار إلى أن كافو يعد أكثر لاعبي البرازيل مشاركة في مباريات منتخب بلاده برصيد 142 مباراة دولية، واللاعب الوحيد في العالم الذي شارك مع منتخبه في ثلاث مباريات نهائية متتالية في مونديال 1994 بالولايات المتحدة، ومونديال 1998 في فرنسا، ومونديال 2002 في كوريا واليابان.</p>",
+        "image": 1,
+        "category": 2,
+        "created": "2022-11-16T16:18:09.206Z",
+        "updated": "2022-11-17T08:19:28.997Z"
+    }
+},
+{
+    "model": "core.article",
+    "pk": 2,
+    "fields": {
+        "title": "انطلاق مبيعات تذاكر كأس العالم قطر 2022",
+        "description": "<p style=\"padding-left: 40px; text-align: right;\">وسيجري تأكيد تذاكر أول نسخة من البطولة في الشرق الأوسط والعالم العربي لأصحابها مباشرة بعد اختيارهم لها ودفعهم قيمتها على موقع FIFA.com/tickets الذي سيفتح أبوابه للمشجعين ابتداء من الثلاثاء 5 يوليو عند الثانية عشرة ظهراً بتوقيت الدوحة. ودعا الفيفا عشاق كرة القدم إلى المسارعة بحجز مقاعدهم لحضور منافسات الحدث التاريخي، خاصة وأن عدد التذاكر أصبح محدوداً بعد بيع مليون و 800 الف تذكرة قبل خمسة أشهر من انطلاق البطولة، مشيراً إلى أنه قد يجري وضع قوائم احتياطية لطلبات المشجعين على التذاكر في حال تجاوزت مستويات الطلب العدد المتاح من تذاكر المباريات. وشهدت المراحل السابقة من بيع التذاكر إقبالاً واسعاً من المشجعين في العديد من الدول في أنحاء العالم، وفي مقدمتها، بعد الدولة المستضيفة، كل من كندا وإنجلترا وفرنسا وألمانيا والهند والمملكة العربية السعودية وإسبانيا والإمارات العربية المتحدة وأمريكا. ومن المتوقع أن يتزايد اهتمام المشجعين بهذه المرحلة من مبيعات تذاكر المونديال بعد أن تعرّف عشاق كرة القدم على المنتخبات الـ 32 المتأهلة للبطولة، وستُغلق هذه المرحلة أبوابها يوم 16 أغسطس المقبل عند الثانية عشرة ظهراً بتوقيت الدوحة. ووجّه الفيفا مشجعي كرة القدم في أنحاء العالم إلى ضرورة التخطيط الجيد للرحلة إلى قطر، وتجنب المواقع غير المصرح بها والتذاكر المزيفة، مشيراً إلى أن الموقع الرسمي الوحيد الذي يمكن من خلاله الحصول على تذاكر كأس العالم FIFA قطر 2022&trade; هو: FIFA.com/tickets.</p>",
+        "image": 2,
+        "category": 2,
+        "created": "2022-11-17T08:22:11.664Z",
+        "updated": "2022-11-17T08:22:11.664Z"
+    }
+},
+{
+    "model": "core.article",
+    "pk": 3,
+    "fields": {
+        "title": "الدوري الإسباني  5 لاعبين على وشك الرحيل من برشلونة !",
+        "description": "<h3 style=\"text-align: right; padding-left: 40px;\">يواصل نادي برشلونة تقليص حجمه، وقضايا معلقة مثل مارتن بريثويت، وهناك 5 لاعبين على وشك الرحيل.</h3>\r\n<h3 style=\"text-align: right; padding-left: 40px;\">لا يزال نادي برشلونة يواجه موقع بناء ضخم، على الرغم من الروافع المالية المختلفة التي تم تفعيلها من قبل إدارة جوان لابورتا ، والتي جعلت من الممكن بشكل خاص أن تكون قادرًا على دفع مبالغ كبيرة لروبرت ليفاندوفسكي أو رافينها أو جول كوندي.</h3>\r\n<h3 style=\"text-align: right; padding-left: 40px;\">&nbsp;لا يزال يتعين على برشلونة العمل حتى تتمكن من تسجيل اللاعبين الجدد في الدوري الإسباني.</h3>\r\n<h3 style=\"text-align: right; padding-left: 40px;\"><br />ولتحقيق ذلك ، الأمر بسيط: أجور أقل أو بيع اللاعبين، ويناقش النادي بالفعل مع العديد من المديرين التنفيذيين حتى يوافقوا على مراجعة مكافآتهم ، مع جيرارد بيكيه الذي كان سيعرض حتى اللعب مجانًا.&nbsp;</h3>\r\n<h3 style=\"text-align: right; padding-left: 40px;\">هناك أيضًا بعض العقود غير القانونية المحتملة التي يمكن إلغاؤها ، والتي تتعلق بفرينكي دي يونغ ومارك أندريه تير ستيجين وجيرارد بيكيه وكليمنت لينجليت. ثم هناك هؤلاء اللاعبون الذين يمكنهم المغادرة لانعاش الخزائن.</h3>\r\n<p style=\"text-align: right; padding-left: 40px;\">&nbsp;</p>\r\n<h4 style=\"text-align: right; padding-left: 40px;\"><a href=\"https://www.thefootix.net/%D9%84%D8%A7-%D9%84%D9%80%D9%81%D8%B1%D9%86%D8%B3%D8%A7-%D9%8A%D8%A7%D8%B3%D9%8A%D9%86-%D8%B9%D8%AF%D9%84%D9%8A-%D9%8A%D8%AD%D8%B3%D9%85-%D9%85%D8%B3%D8%AA%D9%82%D8%A8%D9%84%D9%87-%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A-%D9%86%D9%87%D8%A7%D8%A6%D9%8A%D8%A7\">لا لـفرنسا .. ياسين عدلي يحسم مستقبله الدولي نهائيا</a></h4>\r\n<p style=\"text-align: right; padding-left: 40px;\">&nbsp;</p>\r\n<h3 style=\"text-align: right; padding-left: 40px;\">وهكذا نجد ممفيس ديباي يمكنه الرحيل بعد اهتمامات من نادي يوفنتوس، من جهته، أفادت الصحافة الكاتالونية أن صاموئيل أومتيتي، الذي راتبه كبير إلى حد ما ، في طور حسم مستقبله ، ومن هنا غيابه أثناء جوان جامبر مساء الأحد</h3>\r\n<h3 style=\"text-align: right; padding-left: 40px;\">ثم يأتي بعض الشباب حيث هناك نيكو جونزاليس ، حتى لو تم تفسير رحيله المستقبلي على سبيل الإعارة في فالنسيا بشكل أساسي لأسباب رياضية وليست مالية ، يحتاج اللاعب إلى وقت للعب ويدخل في خطط النادي المستقبلية.</h3>\r\n<h3 style=\"text-align: right; padding-left: 40px;\">حالة مماثلة للمغربي عبد الصمد، الذي لديه عدة أندية في الليغا مستعدة للترحيب به وفقًا لموندو ديبورتيفو ، بما في ذلك بيتيس وفياريال وكاديز وجيرونا.&nbsp;</h3>\r\n<h3 style=\"text-align: right; padding-left: 40px;\">أخيرًا ، لاعب برشلونة ب ميكا مارمول (21 عامًا) موجود أيضًا في السوق وفقًا للصحيفة الكاتالونية، ولديه أيضًا خيارات في الدوري الأسباني أو الدرجة الثانية ، سواء على سبيل الإعارة أو انتقال من شأنه أن يجلب مبلغًا صغيرًا للنادي، لكن أدنى يورو من الجيد أخذه الآن.</h3>",
+        "image": 3,
+        "category": 2,
+        "created": "2022-12-06T09:44:47.205Z",
+        "updated": "2022-12-06T09:44:47.205Z"
+    }
+}
+]

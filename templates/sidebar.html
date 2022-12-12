@@ -1,0 +1,80 @@
+<!--Sidebar Page Container-->
+    <div class="sidebar-page-container">
+    	<div class="auto-container">
+        	<div class="row clearfix">
+ 
+				<!--Sidebar Side-->
+				<div class="sidebar-side col-xl-4 col-lg-4 col-md-12 col-sm-12">
+					<aside class="sidebar">
+                        
+						<!-- Search -->
+                        <div class="sidebar-widget search-box">
+                        	<form method="post" action="templateshub.net">
+                                <div class="form-group">
+                                    <input type="search" name="search-field" value="" placeholder="Enter Search Keywords" required>
+                                    <button type="submit"><span class="icon fa fa-search"></span></button>
+                                </div>
+                            </form>
+						</div>
+						
+						<!--Blog Category Widget-->
+
+                        <div class="sidebar-widget sidebar-blog-category">
+                            <div class="sidebar-title">
+                                <h2>Categories</h2>
+                            </div>
+						{% for category in categories %}
+                            <ul class="cat-list">
+                                <li><a href="#">{{category.name}}</a></li>
+                            </ul>
+                        {% endfor %}
+                        </div>
+						
+						<!-- Popular Posts -->
+                        <div class="sidebar-widget popular-posts">
+                            <div class="sidebar-title"><h2>Recent News OF SIDOU</h2></div>
+                            {% for article in articles %}
+                                <article class="post">
+                                    <figure class="post-thumb"><a href="{% url 'core:articledetail' article.pk %}"><img src="{{article.image.image.url}}" alt="{{article.image.title}}"></a></figure>
+                                    <div class="text"><a href="{{article.get_absolute_url}}">SIDOU  ballpark value added ...</a></div>
+                                    {% if article.updated %}
+                                        <div class="post-info">{{article.updated}}</div>
+                                    {% else %}
+                                        <div class="post-info">{{article.created}}</div>
+                                    {% endif %}
+                                </article>
+                            {% endfor %}
+
+                            
+                            <article class="post">
+                            	<figure class="post-thumb"><a href="blog-detail.html"><img src="images/resource/post-thumb-3.jpg" alt=""></a></figure>
+                                <div class="text"><a href="blog-detail.html">Bring to the table in the win-win survival ...</a></div>
+                                <div class="post-info">12 April. 2019</div>
+                            </article>
+                            
+                            <article class="post">
+                            	<figure class="post-thumb"><a href="blog-detail.html"><img src="images/resource/post-thumb-4.jpg" alt=""></a></figure>
+                                <div class="text"><a href="blog-detail.html">Override the digital divide with additional ...</a></div>
+                                <div class="post-info">12 April. 2019</div>
+                            </article>
+
+                        </div>
+						
+						<!-- Popular Tags -->
+                        <div class="sidebar-widget popular-tags">
+                            <div class="sidebar-title"><h2>Tags</h2></div>
+                            <a href="#">Interior Tips</a>
+                            <a href="#">Lighting</a>
+                            <a href="#">Designs</a>
+                            <a href="#">Vintage Look</a>
+                            <a href="#">Kitchens</a>
+                            <a href="#">Kitchens</a>
+                        </div>
+
+					</aside>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
