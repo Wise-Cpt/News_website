@@ -35,6 +35,33 @@ class ArticleDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(ArticleDetailView, self).get_context_data(**kwargs)
         context["articles"] = Article.objects.all()
+        context["categories"] = Category.objects.all()
+        return context
+    
+    # def get_template_names(self) :
+    #     cat_param = self.request.GET.get('category', None)
+    #     if cat_param:
+    #         return "article_detail.html"
+
+
+class CategoryDetailView(ListView):
+    template_name = "category_detail.html"
+    model = Article
+    paginate_by = 2
+    def get_queryset(self):
+        cat_param = self.request.GET.get('category', None)
+        if cat_param:
+            articles = Article.objects.filter(category=cat_param)
+            return articles
+        return super().get_queryset()
+    def get_context_data(self, **kwargs):
+        context = super(CategoryDetailView, self).get_context_data(**kwargs)
+        # context["articles"] = Article.objects.all().order_by('-updated')
+        context["images"] = Image.objects.all()
+        context["categories"] = Category.objects.all()
+        cat_param = self.request.GET.get('category', None)
+        if cat_param:
+            context['s_cat'] = Category.objects.get(id = cat_param)
 
         return context
 
