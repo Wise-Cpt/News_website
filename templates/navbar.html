@@ -1,17 +1,44 @@
+{% load static %}
+{% block content %}
+
 <header class="main-header header-style-one">
         <!--Header Top-->
         <div class="header-top">
             <div class="auto-container clearfix">
                 <div class="top-left clearfix">
-                    <div class="text"><span class="icon flaticon-call-answer"></span> Need help? Call Us Now : <a href="tel:1800-456-7890" class="number">1800 456 7890</a></div>
+                    <div class="text">
+                        {% if business.linkedin %}
+                        <a href="{{business.linkedin}}"><img class="social-img" src="{% static 'images/icons/icons-linkedin-circled.svg' %}" alt=""></a>
+                        {% endif %}
+                        {% if business.facebook %}
+                         <a href="{{business.facebook}}"><img class="social-img" src="{% static 'images/icons/icon-facebook-white.svg' %}" alt=""></a>
+                        {% endif %}
+                        {% if business.insta %}
+                        <a href="{{business.insta}}"><img class="social-img" src="{% static 'images/icons/icon-instagram-white.svg' %}" alt=""></a>
+                        {% endif %}
+                        {% if business.snapchat %}
+                        <a href="{{business.snapchat}}"><img class="social-img" src="{% static 'images/icons/icons-snapchat.svg' %}" alt=""></a>
+                        {% endif %}
+                        {% if business.tiktok %}
+                        <a href="{{business.tiktok}}"><img class="social-img" src="{% static 'images/icons/icons-tiktok.svg' %}" alt=""></a>
+                        {% endif %}
+                        {% if business.twitter %}
+                        <a href="{{business.twitter}}"><img class="social-img" src="{% static 'images/icons/icon-twitter-white.svg' %}" alt=""></a>
+                        {% endif %}
+                        {% if business.pinterest %}
+                        <a href="{{business.pinterest}}"><img class="social-img" src="{% static 'images/icons/icon-pinterest-white.svg' %}" alt=""></a>
+                        {% endif %}
+                        {% if business.youtube %}
+                        <a href="{{business.youtube}}"><img class="social-img" src="{% static 'images/icons/icon-youtube-white.svg' %}" alt=""></a>
+                        {% endif %}
+                    </div>
 					
                 </div>
                 <div class="top-right clearfix">
                     <!-- Info List -->
 					<ul class="info-list">
-                        <li><a href="about.html">Our Story</a></li>
-                        <li><a href="blog.html">Inspiration</a></li>
-						<li class="quote"><a href="contact.html">Get Free Quote</a></li>
+                        <li><a href="">اتصل بنا </a></li>
+						<li class="quote"><a href=""> انضم إلينا</a></li>
                     </ul>
                 </div>
             </div>
@@ -24,7 +51,7 @@
                 <div class="auto-container clearfix">
                     <!--Info-->
                     <div class="logo-outer">
-                        <div class="logo"><a href="/"><img src="static/images/logo.png" alt="" title=""></a></div>
+                        <div class="logo"> <a href="{% url 'core:index' %}">{% if business.logo %}<img src="{{business.logo.url}}" alt="" /></a>{% endif %}</div>
                     </div>
 
                     <!--Nav Box-->
@@ -40,33 +67,27 @@
                             
                             <div class="collapse navbar-collapse clearfix" id="navbarSupportedContent" >
                                 <ul class="navigation clearfix" dir="rtl">
-                                    <li class="dropdown"><a href="/">الرئيسية</a>
+                                    {% for category in categories %}
+                                    <li class="dropdown"><a href="{{category.get_absolute_url}}">{{category.name}}</a>
                                         <ul>
-                                            <li><a href="index-2.html">صفحة 1</a></li>
-                                            <li class="dropdown"><a href="index-2.html">Header Styles</a>
+                                            <li><a href="{{category.get_absolute_url}}">{{category.name}}</a></li>
+                                        </ul>
+                                    </li>
+                                    {% endfor %}
+                                    {% for category in categories %}
+                                    <li class="dropdown"><a href="{{category.get_absolute_url}}">{{category.name}}</a>
+                                        <ul>
+                                            <li><a href="{{category.get_absolute_url}}{{category.get_absolute_url}}"> {{category.name}}</a></li>
+                                            <li class="dropdown"><a href="{{category.get_absolute_url}}">{{category.name}}</a>
                                                 <ul>
-                                                    <li><a href="index-2.html">Header Style One</a></li>
+                                                    <li><a href="{{category.get_absolute_url}}">{{category.name}}</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
                                     </li>
-									<li class="dropdown"><a href="about.html">مسابقات</a>
-                                        <ul>
-                                            <li><a href="about.html">Our Introduction</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="services-dark.html">اخبار</a>
-                                        <ul>
-											<li><a href="services-dark.html">Services Layout 01</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="projects-classic.html">احداث</a>
-                                        <ul>
-                                            <li><a href="projects-classic.html">Projects Classic</a></li>
-                                        </ul>
-                                    </li>
+                                    {% endfor %}
 
-                                    <li><a href="contact.html">تواصل</a></li>
+                                    <li><a href="{% url 'core:index' %}"> الرئيسية</a></li>
                                 </ul>
                             </div>
                         </nav>
@@ -93,14 +114,34 @@
 				<!--Social Links-->
 				<div class="social-links">
 					<ul class="clearfix">
-						<li><a href="#"><span class="fab fa-twitter"></span></a></li>
-						<li><a href="#"><span class="fab fa-facebook-square"></span></a></li>
-						<li><a href="#"><span class="fab fa-pinterest-p"></span></a></li>
-						<li><a href="#"><span class="fab fa-instagram"></span></a></li>
-						<li><a href="#"><span class="fab fa-youtube"></span></a></li>
+						{% if business.linkedin %}
+                        <li><a href="{{business.linkedin}}"><img class="social-img" src="{% static 'images/icons/icons-linkedin-circled.svg' %}" alt=""></a></li>
+                        {% endif %}
+                        {% if business.facebook %}
+                        <li> <a href="{{business.facebook}}"><img class="social-img" src="{% static 'images/icons/icon-facebook-white.svg' %}" alt=""></a></li>
+                        {% endif %}
+                        {% if business.insta %}
+                        <li><a href="{{business.insta}}"><img class="social-img" src="{% static 'images/icons/icon-instagram-white.svg' %}" alt=""></a></li>
+                        {% endif %}
+                        {% if business.snapchat %}
+                        <li><a href="{{business.snapchat}}"><img class="social-img" src="{% static 'images/icons/icons-snapchat.svg' %}" alt=""></a></li>
+                        {% endif %}
+                        {% if business.tiktok %}
+                        <li><a href="{{business.tiktok}}"><img class="social-img" src="{% static 'images/icons/icons-tiktok.svg' %}" alt=""></a></li>
+                        {% endif %}
+                        {% if business.twitter %}
+                        <li><a href="{{business.twitter}}"><img class="social-img" src="{% static 'images/icons/icon-twitter-white.svg' %}" alt=""></a></li>
+                        {% endif %}
+                        {% if business.pinterest %}
+                        <li><a href="{{business.pinterest}}"><img class="social-img" src="{% static 'images/icons/icon-pinterest-white.svg' %}" alt=""></a></li>
+                        {% endif %}
+                        {% if business.youtube %}
+                        <li><a href="{{business.youtube}}"><img class="social-img" src="{% static 'images/icons/icon-youtube-white.svg' %}" alt=""></a></li>
+                        {% endif %}
 					</ul>
                 </div>
             </nav>
         </div><!-- End Mobile Menu -->
 
     </header>
+{% endblock content %}

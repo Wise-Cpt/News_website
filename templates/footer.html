@@ -1,3 +1,5 @@
+{% load static %}
+  
   {% block content %}
   
         	<!-- Footer for index2-->
@@ -15,14 +17,34 @@
                             <div class="footer-column col-lg-7 col-md-6 col-sm-12">
                                 <div class="footer-widget logo-widget">
 									<div class="logo">
-                                    	<a href="index-2.html"><img src="images/footer-logo.png" alt="" /></a>
+                                    	<a href="{% url 'core:index' %}">{% if business.logo_negatif %}<img src="{{business.logo_negatif.url}}" alt="" /></a>{% endif %}
                                     </div>
-                                    <div class="text">وصف صغير للموقع وصف صغير للموقع وصف صغير للموقع وصف صغير للموقع</div>
+                                    {% if business.mini_about %}<div class="text"> {{business.mini_about}}</div>{% endif %}
                                     <ul class="social-icons">
-                                        <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
-                                        <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
-                                        <li><a href="#"><span class="fab fa-twitter"></span></a></li>
-                                        <li><a href="#"><span class="fab fa-google-plus-g"></span></a></li>
+										{% if business.linkedin %}
+										<li><a href="{{business.linkedin}}"><img class="social-img" src="{% static 'images/icons/icons-linkedin-circled.svg' %}" alt=""></a></li>
+										{% endif %}
+										{% if business.facebook %}
+										<li> <a href="{{business.facebook}}"><img class="social-img" src="{% static 'images/icons/icon-facebook-white.svg' %}" alt=""></a></li>
+										{% endif %}
+										{% if business.insta %}
+										<li><a href="{{business.insta}}"><img class="social-img" src="{% static 'images/icons/icon-instagram-white.svg' %}" alt=""></a></li>
+										{% endif %}
+										{% if business.snapchat %}
+										<li><a href="{{business.snapchat}}"><img class="social-img" src="{% static 'images/icons/icons-snapchat.svg' %}" alt=""></a></li>
+										{% endif %}
+										{% if business.tiktok %}
+										<li><a href="{{business.tiktok}}"><img class="social-img" src="{% static 'images/icons/icons-tiktok.svg' %}" alt=""></a></li>
+										{% endif %}
+										{% if business.twitter %}
+										<li><a href="{{business.twitter}}"><img class="social-img" src="{% static 'images/icons/icon-twitter-white.svg' %}" alt=""></a></li>
+										{% endif %}
+										{% if business.pinterest %}
+										<li><a href="{{business.pinterest}}"><img class="social-img" src="{% static 'images/icons/icon-pinterest-white.svg' %}" alt=""></a></li>
+										{% endif %}
+										{% if business.youtube %}
+										<li><a href="{{business.youtube}}"><img class="social-img" src="{% static 'images/icons/icon-youtube-white.svg' %}" alt=""></a></li>
+										{% endif %}
                                     </ul>
 								</div>
 							</div>
@@ -33,9 +55,12 @@
                                 	<h2>روابط أخرى</h2>
 									<div class="widget-content">
 										<ul class="list">
-                                        	<li><a href="#">رابط 1</a></li>
-                                        	<li><a href="#">رابط 2</a></li>
-                                        	<li><a href="#">رابط 3</a></li>
+											
+											{% for category in footer_categories  %}
+                                        		<li><a href="{{category.get_absolute_url}}"> {{category.name}}</a></li>
+											{% endfor %}
+												
+                                    
                                         </ul>
                                     </div>
 								</div>
@@ -51,12 +76,12 @@
                             <!--Footer Column-->
                             <div class="footer-column col-lg-8 col-md-6 col-sm-12">
                                 <div class="footer-widget contact-widget">
-									<h2>معلومات الاتصال</h2>
+									<h2>  اتصل بنا  </h2>
 									<div class="widget-content">
-										<a href="tel:1800-574-9687" class="contact-number">(1800) 574 9687</a>
+										<a dir="rtl" href="tel:1800-574-9687" class="contact-number">{{business.phone}}</a>
 										<ul>
-											<li>256, Stella Orr'e, New York 24</li>
-											<li>Email :<a href="mailto:info@stellaorre.com"> info@stellaorre.com</a></li>
+											<li>{{business.address}}</li>
+											<li> <a href="mailto:{{business.email}}"> {{business.email}}</a> </li>
 										</ul>
 									</div>
 								</div>
@@ -88,7 +113,7 @@
 			<!--Footer Bottom-->
             <div class="footer-bottom clearfix">
                 <div class="pull-left">
-                    <div class="copyright"><a href="templateshub.net">Templates Hub</a></div>
+                    <div class="copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved {{business.name}} - Powered by <a  href="https://octopus-consulting.com" target="_blank">OCTOPUS CONSULTING</a></div>
                 </div>
             </div>
 			

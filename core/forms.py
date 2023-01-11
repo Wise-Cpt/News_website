@@ -1,9 +1,9 @@
 from django.forms import ModelForm
-from .models import Article, Category, Image
+from .models import Article, Category, ArticleImage
 
 class ImageCreateForm(ModelForm):
     class Meta:
-        model = Image
+        model = ArticleImage
         fields = '__all__'
 
 

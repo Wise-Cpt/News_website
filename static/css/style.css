@@ -1,4 +1,4 @@
-/* Stella Orr'e - Interior and Home Renovation HTML Template  */
+
 
 /************ TABLE OF CONTENTS ***************
 1. Fonts
@@ -2357,7 +2357,7 @@ img{
 .main-footer .footer-widget h2:after{
 	position:absolute;
 	content:'';
-	left:0px;
+	right:0px;
 	bottom:0px;
 	width:30px;
 	height:1px;
@@ -2404,17 +2404,17 @@ img{
 	color:#ffffff;
 	font-weight:400;
 	display:inline-block;
-	border:1px solid rgba(255,255,255,0.30);
+	/* border:1px solid rgba(255,255,255,0.30);
 	-webkit-transition:all 300ms ease;
 	-ms-transition:all 300ms ease;
 	-o-transition:all 300ms ease;
 	-moz-transition:all 300ms ease;
-	transition:all 300ms ease;
+	transition:all 300ms ease; */
 }
 
 .main-footer .logo-widget .social-icons li a:hover{
-	color:#dfb162;
-	border-color:#dfb162;
+	color:transparent;
+	/* border-color:#dfb162; */
 }
 
 /* Links Widget */
@@ -8487,3 +8487,8 @@ aside {
 	text-align: right;
   
   }
+
+.social-img{ 
+	max-width: 100%;
+    height: 20px;
+}

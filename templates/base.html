@@ -1,64 +1,64 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-    {% comment %} STELLA TEMPLATE {% endcomment %}
-        <!-- Stylesheets -->
-        {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous"> {% endcomment %}
-        <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-        <link href="{% static 'css/style.css' %}" rel="stylesheet">
-        <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
-
-        <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
-        <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
-
-        <!-- Responsive -->
+    <head>
+        <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-        <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
-        <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    {% block title %}
-    <title>Sport News</title>
-    {% endblock title %}
+            <!-- Stylesheets -->
+            {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous"> {% endcomment %}
+            <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+            <link href="{% static 'css/style.css' %}" rel="stylesheet">
+            <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+            <!-- Responsive -->
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+            <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+            <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+            {% if business.favicon  %}
+                <link rel="apple-touch-icon" sizes="180x180" href="{{business.favicon.url}}">
+                <link rel="icon" type="image/png" sizes="32x32" href="{{business.favicon.url}}">
+                <link rel="icon" type="image/png" sizes="16x16" href="{{business.favicon.url}}">
+                <link rel="shortcut icon" href="{{business.favicon.url}}">
+            {% endif %}
+            {% block extra_seo %}
+            <title>{{business.title}}</title>
+            <meta name="keywords" content="{{business.meta_keyword}}">
+            <meta name="description" content="{{business.meta_description}}">
+            <meta name="author" content="{{business.name}}"  />
+            <meta name="robots" content="index,follow" />
+            <meta name="apple-mobile-web-app-title" content="{{business.title}}">
+            <meta name="application-name" content="{{business.name}}">
+            <meta property="og:url" content="" />
+            <meta property="og:title" content="{{business.title}}" />
+            <meta property="og:type" content="Services" />
+            <meta property="og:site_name" content="{{business.name}} | {{business.title}}"/>
+            {% endblock extra_seo %}
+    </head>
 
-</head>
+    {% include "navbar.html" %}
 
-{% include "navbar.html" %}
-
-{% comment %} <body style=""dir="rtl"> {% endcomment %}
-<body >
+    {% comment %} <body style=""dir="rtl"> {% endcomment %}
+    <body >
 
 
-{% block content %}
+        {% block content %}
 
-{% endblock content %}
+        {% endblock content %}
 
-{% include "footer.html" %}
-
-
-
-    {% comment %} STELLA TEMPLATE JS {% endcomment %}
-        <script src="{% static 'js/jquery.js' %}"></script>
-        <script src="{% static 'js/popper.min.js' %}"></script>
-        <script src="{% static 'js/jquery-ui.js' %}"></script>
-        <script src="{% static 'js/bootstrap.min.js' %}"></script>
-        <script src="{% static 'js/jquery.fancybox.js' %}"></script>
-        <script src="{% static 'js/owl.js' %}"></script>
-        <script src="{% static 'js/wow.js' %}"></script>
-        <script src="{% static 'js/validate.js' %}"></script>
-        <script src="{% static 'js/appear.js' %}"></script>
-        <script src="{% static 'js/scrollbar.js' %}"></script>
-        <script src="{% static 'js/script.js' %}"></script>
-
-
-
-</body>
+        {% include "footer.html" %}
+            <script src="{% static 'js/jquery.js' %}"></script>
+            <script src="{% static 'js/popper.min.js' %}"></script>
+            <script src="{% static 'js/jquery-ui.js' %}"></script>
+            <script src="{% static 'js/bootstrap.min.js' %}"></script>
+            <script src="{% static 'js/jquery.fancybox.js' %}"></script>
+            <script src="{% static 'js/owl.js' %}"></script>
+            <script src="{% static 'js/wow.js' %}"></script>
+            <script src="{% static 'js/validate.js' %}"></script>
+            <script src="{% static 'js/appear.js' %}"></script>
+            <script src="{% static 'js/scrollbar.js' %}"></script>
+            <script src="{% static 'js/script.js' %}"></script>
+    </body>
 </html>

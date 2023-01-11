@@ -6,21 +6,31 @@ from django.views.generic import (
     ListView,
     UpdateView,
     DeleteView, 
+    TemplateView,
 )
-from .models import Article, Category, Image
+from .models import Article, Category, ArticleImage
+from business.models import Slide
 from .forms import CategoryCreateForm, ImageCreateForm, ArticleCreateForm
 
 # Create your views here.
 
-class ArticleListView(ListView):
+class IndexView(TemplateView):
     template_name = "index.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["slider"]           = Slide.place.slider()
+
+        return context
+
+class ArticleListView(ListView):
+    template_name = "article _ist.html"
     paginate_by = 2
     model = Article
     # queryset= Article.objects.all()
     def get_context_data(self, **kwargs):
         context = super(ArticleListView, self).get_context_data(**kwargs)
         context["articles"] = Article.objects.all().order_by('-updated')
-        context["images"] = Image.objects.all()
+        context["images"] = ArticleImage.objects.all()
         context["categories"] = Category.objects.all()
         # context["test_page"] = page_obj
 
@@ -57,7 +67,7 @@ class CategoryDetailView(ListView):
     def get_context_data(self, **kwargs):
         context = super(CategoryDetailView, self).get_context_data(**kwargs)
         # context["articles"] = Article.objects.all().order_by('-updated')
-        context["images"] = Image.objects.all()
+        context["images"] = ArticleImage.objects.all()
         context["categories"] = Category.objects.all()
         cat_param = self.request.GET.get('category', None)
         if cat_param:

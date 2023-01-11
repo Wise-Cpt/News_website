@@ -1,12 +1,13 @@
 from django.urls import path
 from django.conf.urls.static import static
 from config import settings
-from .views import ArticleListView, ArticleDetailView, CategoryDetailView
+from .views import ArticleListView, ArticleDetailView, CategoryDetailView,IndexView
 
 app_name = 'core'
 
 urlpatterns = [
-    path('', ArticleListView.as_view(), name='articlelist'),
+    path('', IndexView.as_view(), name='index'),
+    path('articles', ArticleListView.as_view(), name='articlelist'),
     path('category-<int:pk>', CategoryDetailView.as_view(), name='categorydetail'),
     path('article-<int:pk>', ArticleDetailView.as_view(), name='articledetail'),
     # path('article-liste_2', ArticleListView.as_view(), name='articlelist'),
