@@ -14,10 +14,9 @@ class SlideAdmin(admin.ModelAdmin):
         return format_html('<img src="{}" height="150" />'.format(self.photo.url))
     image_tag.short_description = 'Image'
     image_tag.allow_tags = True
-    list_display = ('id', 'actif', 'title', 'position','photo', image_tag, 'url')
+    list_display = ('id', 'actif', 'title','sub_title', 'position','photo', image_tag, 'url')
     list_display_links = ('id',image_tag )
-    list_editable = ['photo', 'url', 'actif', 'title', 'position']
-    exclude  = ['title','sub_title',  ]
+    list_editable = ['photo', 'url', 'actif', 'title','sub_title', 'position']
 
 admin.site.register(Business, BusinesAdmin)
 admin.site.register(Slide, SlideAdmin)

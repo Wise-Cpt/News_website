@@ -16,18 +16,23 @@
 				<!-- Slide -->
 				<div class="slide" dir="auto">
 					
-					{% for slide in slider %}
+					{% for slide in sliders %} 
 						{% if slide.photo %}
 							<div class="image-layer" style="background-image:url({{slide.photo.url}})"></div>
 						{% else %}
 							<div class="image-layer" style="background-image:url(static/imagesbackground/1.jpg)"></div>
-						{% endif %}
+						{% endif %} 
 					<div class="auto-container">
 						<div class="content">
-							<h2>تصاميم مفيدة <br> شخصيتك</h2>
-							<div class="text">منذ عام 1989 ، ألهمنا أجزاء من قصص حياتك بأرقى المطابخ والخزائن وأطقم غرف النوم والمعيشة وتناول الطعام</div>
+							{% if  slide.title %}
+								<h2> {{slide.title}}</h2> 
+							{% endif %}
+							{% if  slide.title %}
+								<div class="text"> {{slide.sub_title}}</div>
+							{% endif %}
+
 							<div class="btns-box" >
-								<a href="#" class="theme-btn btn-style-one" ><span class="txt" dir="auto">احصل على عرض أسعار مجاني</span></a>
+								<a href="{{slide.url}} " class="theme-btn btn-style-one" ><span class="txt" dir="auto"> اقرأ المزيد </span></a>
 							</div>
 						</div>
 					</div>
