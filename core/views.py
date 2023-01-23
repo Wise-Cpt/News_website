@@ -10,6 +10,7 @@ from django.views.generic import (
 )
 from .models import Article, Category, ArticleImage
 from business.models import Slide
+from .models import Article
 from .forms import CategoryCreateForm, ImageCreateForm, ArticleCreateForm
 
 # Create your views here.
@@ -19,8 +20,9 @@ class IndexView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["sliders"]           = Slide.place.slider()
-        context["slider"]           = Slide.place.slider()
-
+        context["homepage_articles"]            = Article.objects.filter(to_home_page=True)
+        context["homepage_article_list"]          = Article.objects.filter(to_home_page=True)
+        context["homepage_card_articles"]          = Article.objects.filter(to_home_page=True)
         return context
 
 class ArticleListView(ListView):

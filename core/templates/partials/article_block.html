@@ -1,0 +1,21 @@
+{% load static %}
+    <!-- News Block Three-->
+    <div class="news-block-three">
+        <div class="inner-box">
+            <div class="image-box">
+                <figure class="image"><a href="{{article.get_absolute_url}}">{% if article.first_image %}<img class="default-img" src="{{article.first_image}}" alt="" />{% else %}<img src="{% static 'images/background/5.jpg' %}" alt="">  {% endif %}</a></figure>
+                <span class="date">{{article.date|date:'Y-m-d'}}</span>
+            </div>
+            <div class="lower-content">
+                <div class="post-meta">
+                    <ul class="post-info clearfix">
+                        <li><a href="{{article.get_absolute_url}}"> {{article.author.username}}</a></li>
+                        <li><a href="{{article.category.get_absolute_url}}">{{article.category}}</a></li>
+                    </ul>
+                </div>
+                <h3><a href="{{article.get_absolute_url}}">{{article.title}}</a></h3>
+                <div class="text"> {{article.aperçu}}</div>
+                <div class="link-box"><a href="{{article.get_absolute_url}}" class="theme-btn read-more">اقرء المزيد</a></div>
+            </div>
+        </div>
+    </div>

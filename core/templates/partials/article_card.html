@@ -1,0 +1,16 @@
+{% load static %}
+
+<!-- Service Block -->
+<div class="service-block-three style-two col-lg-3 col-md-6 col-sm-12">
+    <div class="inner-box wow fadeInUp animated" data-wow-delay="750ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 750ms; animation-name: fadeInUp;">
+        <div class="image">
+            <a href="{{article.get_absolute_url}}">{% if article.first_image %}<img  src="{{article.first_image}}" alt="" />{% else %}<img src="{% static 'images/background/5.jpg' %}" alt="">  {% endif %}</a>
+
+        </div>
+        <div class="lower-content">
+            <h3><a href="commercial-interior.html">{{article.title}}</a></h3>
+            <div class="text">{{article.aperçu|truncatechars:10}}</div>
+            <a href="{{article.get_absolute_url}}" class="read-more"> اقرء المزيد </a>
+        </div>
+    </div>
+</div>

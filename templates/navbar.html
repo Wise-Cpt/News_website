@@ -51,7 +51,7 @@
                 <div class="auto-container clearfix">
                     <!--Info-->
                     <div class="logo-outer">
-                        <div class="logo"> <a href="{% url 'core:index' %}">{% if business.logo %}<img src="{{business.logo.url}}" alt="" /></a>{% endif %}</div>
+                        <div class="logo "> <a href="{% url 'core:index' %}">{% if business.logo %}<img class="logo-img" src="{{business.logo.url}}" alt="" /></a>{% endif %}</div>
                     </div>
 
                     <!--Nav Box-->
@@ -68,27 +68,62 @@
                             <div class="collapse navbar-collapse clearfix" id="navbarSupportedContent" >
                                 <ul class="navigation clearfix" dir="rtl">
                                     {% for category in categories %}
-                                    <li class="dropdown"><a href="{{category.get_absolute_url}}">{{category.name}}</a>
-                                        <ul>
-                                            <li><a href="{{category.get_absolute_url}}">{{category.name}}</a></li>
-                                        </ul>
-                                    </li>
+                                        {% for node in category.children.all %}
+                                            {% if node.is_root_node %} 
+                                                <li><a href="{{category.get_absolute_url}}"> no sub {{category.name}}</a></li>
+                                            {% else %}
+                                                <li class="dropdown"><a href="{{category.get_absolute_url}}">1. {{category.name}}</a>
+                                                    <ul>
+                                                        {% for node in category.children.all %}
+                                                            {{ node.category.children.count }}
+                                                            {% if  node.children.count > 0 %}
+                                                                <li class="dropdown"><a href="{{category.get_absolute_url}}">2. {{node.name}}</a>
+                                                                    <ul>
+                                                                        {% for subact in node.children.all %}
+                                                                        <li><a href="{{category.get_absolute_url}}"> 3. {{subact.name}}</a></li>
+                                                                        {% endfor %}
+                                                                    </ul>
+                                                                </li>
+                                                            {% else %}
+                                                            <li><a href="{{category.get_absolute_url}}"> parent {{ node.name }}</a></li>
+                                                            {% endif %} 
+                                                        {% endfor %}
+                                                    </ul>
+                                                </li>
+                                            {% endif %} 
+                                        {% endfor %}
                                     {% endfor %}
+                                    <li><a href="{% url 'core:index' %}"> الرئيسية</a></li>
+
+                                </ul>
+                                {% comment %} <ul class="navigation clearfix" dir="rtl">
                                     {% for category in categories %}
-                                    <li class="dropdown"><a href="{{category.get_absolute_url}}">{{category.name}}</a>
-                                        <ul>
-                                            <li><a href="{{category.get_absolute_url}}{{category.get_absolute_url}}"> {{category.name}}</a></li>
-                                            <li class="dropdown"><a href="{{category.get_absolute_url}}">{{category.name}}</a>
+                                        {% if  category.children.count > 0 %}
+                                            <li class="dropdown"><a href="{{category.get_absolute_url}}"> 1.{{category.name}}</a>
                                                 <ul>
-                                                    <li><a href="{{category.get_absolute_url}}">{{category.name}}</a></li>
+                                                    {% for node in category.children.all %}
+                                                    {{ node.category.children.count }}
+                                                        {% if  node.children.count > 0 %}
+                                                            <li class="dropdown"><a href="{{category.get_absolute_url}}">2. {{node.name}}</a>
+                                                                <ul>
+                                                                    {% for subact in node.children.all %}
+                                                                    <li><a href="{{category.get_absolute_url}}"> 3. {{subact.name}}</a></li>
+                                                                    {% endfor %}
+                                                                </ul>
+                                                            </li>
+                                                        {% else %}
+                                                        <li><a href="{{category.get_absolute_url}}{{category.get_absolute_url}}"> 2..{{ node.name }}</a></li>
+                                                        {% endif %} 
+                                                    {% endfor %}
                                                 </ul>
                                             </li>
-                                        </ul>
-                                    </li>
+                                        {% else %}
+                                            <li><a href="{{category.get_absolute_url}}"> 1.. {{category.name}}</a></li>
+                                        {% endif %} 
                                     {% endfor %}
-
                                     <li><a href="{% url 'core:index' %}"> الرئيسية</a></li>
-                                </ul>
+
+                                </ul> {% endcomment %}
                             </div>
                         </nav>
                         <!-- Main Menu End-->

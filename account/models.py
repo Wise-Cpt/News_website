@@ -1,65 +1,27 @@
 from django.db import models
-from django.contrib.auth.models import (AbstractUser, BaseUserManager)
-from django.urls import reverse
+from django.conf import settings
 # Create your models here.
 
-class UserManager(BaseUserManager):
-    use_in_migrations = True
+class Role(models.Model):
+    name    = models.CharField(max_length=30, verbose_name="role")
+    active  = models.BooleanField(default=True, verbose_name="Livraison Active")
+    class Meta:
+        verbose_name = "Role"
+        verbose_name_plural = "Roles"        
+    def __str__(self):
+        return self.name 
 
-    def _create_user(self, email, password,**extra_fields):
-        if not email:
-            raise ValueError("The given email must be set")
-        email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields) 
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
+class Profile(models.Model):
+    user        = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    picture     = models.ImageField(upload_to='images/faces', null=True, blank=True)
+    username    = models.CharField(max_length=20 , null=True, blank=True)
+    phone       = models.CharField(max_length=20 , blank=True)
+    address     = models.CharField(max_length=250 , blank=True)
+    role        = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True, blank=True)
+    
+    def __str__(self):
+        # return f'{self.username}'
+        return str(self.username)
 
-    def create_user(self, email, password=None, **extra_fields):
-        extra_fields.setdefault("is_staff", False)
-        extra_fields.setdefault("is_superuser", False)
-        extra_fields.setdefault("is_active", False)
-        return self._create_user(email, password, **extra_fields)
-       
-    def create_superuser(self, email, password, **extra_fields):
-        extra_fields.setdefault("is_staff", True)
-        extra_fields.setdefault("is_superuser", True)
-        extra_fields.setdefault("is_active", True)
-        if extra_fields.get("is_staff") is not True:
-         raise ValueError(
-                "Superuser must have is_staff=True."
-        )
-        if extra_fields.get("is_active") is not True:
-         raise ValueError(
-                "Superuser must have is_active=True."
-        )
-        if extra_fields.get("is_superuser") is not True:
-            raise ValueError(
-                 "Superuser must have is_superuser=True."
-        )
-        return self._create_user(email, password, **extra_fields)
 
-class User(AbstractUser):
-    ROLES = (
-        ("ST","Staff"),
-        ("AU","Author"),
-        ("AD","Admin"),
-    )
-    username        = None
-    email           = models.EmailField('email address', unique=True)
-    picture         = models.ImageField(upload_to='images/faces', null=True, blank=True)
-    pseudo          = models.CharField( max_length=150, null=True, blank=True)
-    role            = models.CharField( max_length=150, null=True, blank=True)
-    notes           = models.TextField( blank=True, null=True)
-    is_active       = models.BooleanField(default=False)
-    is_manager      = models.BooleanField(default=False)
-    is_admin        = models.BooleanField(default=False)
-    USERNAME_FIELD  = 'email'
-    REQUIRED_FIELDS = []
-    objects         = UserManager()
-
-    def display_picture(self):
-        if self.picture:
-            return self.picture.url
-        else: 
-            return "/static/images/profile.png" 
+ 

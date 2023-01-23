@@ -18,11 +18,11 @@ class ImageAdmin(admin.ModelAdmin):
     list_per_page = 40
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name',  'actif','to_home_page')
+    list_display = ('id', 'name',  'actif','to_home_page', 'to_footer')
     prepopulated_fields = {"slug": ("name",)}
     list_display_links = ('id','name' )
     list_per_page = 50
-    list_editable = [ 'actif', 'to_home_page']
+    list_editable = [ 'actif', 'to_home_page', 'to_footer']
     search_fields = ('name',)
 
 class ArticleAdmin( admin.ModelAdmin):

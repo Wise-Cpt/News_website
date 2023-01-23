@@ -1,79 +1,37 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-
-
 <div class="page-wrapper">
-    <!-- Preloader -->
+    <!-- Preloader --> 
     <div class="preloader"></div>
-
-    <!-- Main Slider -->
-	<section class="main-slider style-three">
+	<section class="main-slider">
 		<div class="slider-box">
-		
 			<!-- Banner Carousel -->
 			<div class="banner-carousel owl-theme owl-carousel">
-				<!-- Slide -->
-				<div class="slide" dir="auto">
-					
-					{% for slide in sliders %} 
+				{% for slide in sliders %} 
+					<!-- Slide -->
+					<div class="slide">
 						{% if slide.photo %}
 							<div class="image-layer" style="background-image:url({{slide.photo.url}})"></div>
 						{% else %}
-							<div class="image-layer" style="background-image:url(static/imagesbackground/1.jpg)"></div>
+								<div class="image-layer" style="background-image:url(static/imagesbackground/1.jpg)"></div>
 						{% endif %} 
-					<div class="auto-container">
-						<div class="content">
-							{% if  slide.title %}
-								<h2> {{slide.title}}</h2> 
-							{% endif %}
-							{% if  slide.title %}
-								<div class="text"> {{slide.sub_title}}</div>
-							{% endif %}
-
-							<div class="btns-box" >
-								<a href="{{slide.url}} " class="theme-btn btn-style-one" ><span class="txt" dir="auto"> اقرأ المزيد </span></a>
+						<div class="auto-container">
+							<div class="content">
+								{% if  slide.title %} <h2>{{slide.title}}</h2>{% endif %}
+								{% comment %} {% if  slide.sub_title %}<div class="text" dir="rtl" >{{slide.sub_title}}</div>{% endif %} {% endcomment %}
+								<div class="btns-box">
+									<a href="{{slide.url}}" class="theme-btn btn-style-one"><span class="txt"> اقرأ المزيد </span></a>
+								</div>
 							</div>
 						</div>
 					</div>
-					{% endfor %}
-
-				</div>
-				
-				{% comment %} <!-- Slide -->
-				<div class="slide">
-                	<div class="image-layer" style="background-image:url(static/images/main-slider/1.jpg)"></div>
-					<div class="auto-container">
-						<div class="content">
-							<h2>تصاميم مفيدة <br> شخصيتك</h2>
-							<div class="text">منذ عام 1989 ، ألهمنا أجزاء من قصص حياتك بأرقى المطابخ والخزائن وأطقم غرف النوم والمعيشة وتناول الطعام</div>
-							<div class="btns-box">
-								<a href="#" class="theme-btn btn-style-one"><span class="txt">احصل على عرض أسعار مجاني</span></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				
-				<!-- Slide -->
-				<div class="slide">
-                	<div class="image-layer" style="background-image:url(static/images/main-slider/2.jpg)"></div>
-					<div class="auto-container">
-						<div class="content">
-							<h2>تصاميم مفيدة <br> شخصيتك</h2>
-							<div class="text">منذ عام 1989 ، ألهمنا أجزاء من قصص حياتك بأرقى المطابخ والخزائن وأطقم غرف النوم والمعيشة وتناول الطعام</div>
-							<div class="btns-box">
-								<a href="#" class="theme-btn btn-style-one"><span class="txt">احصل على عرض أسعار مجاني</span></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				 {% endcomment %}
+				{% endfor %}
 			</div>
 			
 		</div>
 	</section>
-
+	<!-- End Banner Section -->
 	<!--Sidebar Page Container-->
     <div class="sidebar-page-container">
     	<div class="auto-container">
@@ -81,82 +39,14 @@
                 <!--Content Side / Blog Classic -->
                 <div class="content-side col-xl-8 col-lg-8 col-md-12 col-sm-12">
                 	<div class="blog-classic padding-right">
-
-                		<!-- News Block Three-->
-                        {% for article in page_obj %}
-							{% if article.actif %}
-							
-							{% comment %} {% else %} {% endcomment %}
-								<div class="news-block-three">
-									<div class="inner-box">
-										<div class="image-box">
-											<figure class="image"><a href="{{article.get_absolute_url}}"><img src="{{article.image.image.url}}" alt="{{article.image.title}}"></a></figure>
-											<span class="date">{{article.created}}</span>
-										</div>
-										<div class="lower-content">
-											<div class="post-meta">
-												<ul class="post-info clearfix">
-													<li><a href="blog-detail.html">By : admin</a></li>
-													<li><a href="blog-detail.html">interior, furniture</a></li>
-													<li><a href="blog-detail.html">Comments: 8</a></li>
-												</ul>
-											</div>
-											<h3><a href="{{article.get_absolute_url}}" dir="auto">{{article.title}}</a></h3>
-											<div class="text" name="description" >{{article.description_min|truncatewords:40}}</div>
-											{% comment %} {{article.description|safe|truncatewords:40}} {% endcomment %}
-											<div class="link-box"><a href="{{article.get_absolute_url}}" class="theme-btn read-more">اقرء المزيد</a></div>
-										</div>
-									</div>
-								</div>
-							{% endif %}
+						<!-- News Block Three--> 
+                        {% for article in homepage_articles %}
+							{% include 'partials/article_block.html' %}
                         {% endfor %}
-
-		                
-						<!-- News Block Three-->
-		                <div class="news-block-three">
-		                    <div class="inner-box">
-		                        <div class="image-box">
-		                            <figure class="image"><a href="blog-detail.html"><img src="images/resource/news-5.jpg" alt=""></a></figure>
-		                            <span class="date">9 may 2019</span>
-		                        </div>
-		                        <div class="lower-content">
-		                            <div class="post-meta">
-		                            	<ul class="post-info clearfix">
-			                                <li><a href="blog-detail.html">By : admin</a></li>
-			                                <li><a href="blog-detail.html">interior, furniture</a></li>
-			                                <li><a href="blog-detail.html">Comments: 8</a></li>
-			                            </ul>
-			                        </div>
-		                            <h3><a href="blog-detail.html">How to make best home interior ourself</a></h3>
-		                            <div class="text">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur velit esse cillum Duis aute irure dolor in reprehenderit in voluptate ...</div>
-			                        <div class="link-box"><a href="blog-detail.html" class="theme-btn read-more">Read more</a></div>
-		                        </div>
-		                    </div>
-		                </div>
-
 					</div>
 					
-					<!--Styled Pagination-->
-
-					{% comment %} <div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-        </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
-					 {% endcomment %}
-					<ul class="styled-pagination">
+					
+					{% comment %} <ul class="styled-pagination">
 						{% if page_obj.has_previous %}
 							<li><a href="?page={{ page_obj.previous_page_number }}"><span class="fa fa-angle-left"></span></a></li>
 						{% endif %}
@@ -176,7 +66,7 @@
 							<li><a href="?page={{ page_obj.next_page_number }}"><span class="fa fa-angle-right"></span></a></li>
 						{% endif %}
 
-					</ul>                
+					</ul>                 {% endcomment %}
 				</div>
 				
 				<!--Sidebar Side-->
@@ -209,19 +99,8 @@
 						<!-- Popular Posts -->
                         <div class="sidebar-widget popular-posts">
                             <div class="sidebar-title"><h2>اخر الاخبار</h2></div>
-                            {% for article in articles %}
-								{% if article.actif %}
-								
-									<article class="post">
-										<figure class="post-thumb"><a href="{{article.get_absolute_url}}"><img src="{{article.image.image.url}}" alt="{{article.image.title}}"></a></figure>
-										<div class="text"><a href="{{article.get_absolute_url}}">{{article.title}}</a></div>
-										{% if article.updated %}
-											<div class="post-info">{{article.updated}}</div>
-										{% else %}
-											<div class="post-info">{{article.created}}</div>
-										{% endif %}
-									</article>
-								{% endif %}
+                            {% for article in homepage_article_list %}
+							{% include 'partials/article_block_list.html' %}
                             {% endfor %}
 
                         </div>
@@ -240,9 +119,25 @@
 			</div>
 		</div>
 	</div>
-	
-
-
+	<section class="services-section-three">
+		<div class="auto-container">
+			
+			<!-- Sec Title -->
+			<div class="sec-title centered">
+				<h2>One stop for home interiors</h2>
+				<div class="text">To give you a home that lasts, we bring you only the best in everything — quality raw materials, state-of-the-art manufacturing, rigorous quality checks, professional installations and transparent prices.</div>
+			</div>
+			
+			<div class="row clearfix">
+				{% for article in homepage_card_articles %}	
+					{% include 'partials/article_card.html' %}
+				{% endfor %}
+				
+				
+			</div>
+			
+		</div>
+	</section>
 	
 </div>  
 <!--End pagewrapper-->

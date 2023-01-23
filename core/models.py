@@ -3,6 +3,9 @@ from tinymce import models as tinymce_models
 from django.urls import reverse
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
+from mptt.models import MPTTModel, TreeForeignKey
+from django.utils.text import slugify
+from account.models import Profile 
 # Create your models here.
 
 class AbstractSEO(models.Model):
@@ -28,21 +31,46 @@ class Issue(AbstractSEO,models.Model):
     def get_absolute_url(self):
         return reverse('core:issuedetail', kwargs={'pk': self.pk})
 
-class Category(models.Model):
-    name                = models.CharField(max_length=254, verbose_name="Nom de la categorie")
-    slug                = models.SlugField()
+# class Category(models.Model):
+#     name                = models.CharField(max_length=254, verbose_name="Nom de la categorie")
+#     slug                = models.SlugField()
+#     actif               = models.BooleanField(verbose_name='actif', default=True)
+#     to_home_page        = models.BooleanField(verbose_name="ajouter a la page d'accueil", default=False)
+#     to_footer           = models.BooleanField(verbose_name="ajouter au footer", default=False)
+#     description         = models.TextField(blank=True, null=True)
+#     parent              = models.ForeignKey("self",on_delete=models.SET_NULL, null=True, blank=True)
+
+#     def __str__(self):
+#         return self.name
+
+#     def get_absolute_url(self):
+#         return reverse('core:categorydetail', kwargs={'pk': self.pk})
+class Category(AbstractSEO, MPTTModel):
+    name  = models.CharField( max_length=150, verbose_name='Nom')
+    slug  = models.SlugField( max_length=150, unique= True, verbose_name='URL')
+    order  = models.IntegerField(verbose_name='ordre', null=True, blank=True)
     actif = models.BooleanField(verbose_name='actif', default=True)
     to_home_page = models.BooleanField(verbose_name="ajouter a la page d'accueil", default=False)
     to_footer = models.BooleanField(verbose_name="ajouter au footer", default=False)
-    description         = models.TextField(blank=True, null=True)
-    parent              = models.ForeignKey("self",on_delete=models.SET_NULL, null=True, blank=True)
+    parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
+    created      = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
+    updated      = models.DateTimeField(verbose_name='Date de dernière mise à jour', auto_now=True)
 
     def __str__(self):
         return self.name
-
+    def save(self, *args, **kwargs):
+        import random
+        if not self.slug:
+            self.slug = str(slugify(self.name) + "-" + slugify(int(random.randint(1, 10000)))
+                    )
+        super(Category, self).save(*args, **kwargs)  
     def get_absolute_url(self):
         return reverse('core:categorydetail', kwargs={'pk': self.pk})
-    
+    class Meta:
+        verbose_name = 'Catégorie'
+        verbose_name_plural = '- Catégories'
+    class MPTTMeta:
+        order_insertion_by = ["name"]
 class Contact(models.Model):
     name        = models.CharField(verbose_name=_('Nom complet'), max_length=100)
     phone       = models.CharField(verbose_name=_("Téléphone") , max_length=25)
@@ -84,9 +112,11 @@ class Article(AbstractSEO, models.Model):
     texte_bottom  = tinymce_models.HTMLField(verbose_name='texte bas', blank=True, null=True)
     author        = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name="Auteur", related_name="autors", blank=True)
     category      = models.ForeignKey(Category,on_delete=models.CASCADE,  verbose_name="categorie de l'article", related_name="category_of_article")
-    issue         = models.ForeignKey(Issue,on_delete=models.CASCADE,   related_name="issue_of_article")
+    issue         = models.ForeignKey(Issue,on_delete=models.CASCADE,   related_name="issue_of_article", blank=True, null=True)
     publish       = models.BooleanField(default=True, verbose_name='Publier',)
+    to_home_page = models.BooleanField(verbose_name="ajouter a la page d'accueil", default=False)
     actif         = models.BooleanField(default=True)
+    date       = models.DateTimeField(verbose_name='Date de publication', blank=True, null=True  )
     created       = models.DateTimeField(verbose_name='Date de Création',  auto_now_add=True)
     updated       = models.DateTimeField(verbose_name='Date de dernière mise à jour',  auto_now=True)
     def __str__(self):
@@ -94,9 +124,28 @@ class Article(AbstractSEO, models.Model):
     def get_absolute_url(self):
         return reverse("core:articledetail", kwargs={"slug": self.slug})
 
+ 
+    @property
+    def first_image(self):
+        image = None
+        try:
+            image = self.photos.first().image.url
+        except:
+            pass
+        return image
+
+    @property
+    def last_image(self):
+        image = None
+        try:
+            if self.photos.count() > 1:
+                image = self.photos.last().image.url
+        except:
+            pass
+        return image
 
 class ArticleImage(models.Model):
-    produit             = models.ForeignKey(Article, related_name="photos", on_delete=models.CASCADE, null=True, blank = True)
+    article             = models.ForeignKey(Article, related_name="photos", on_delete=models.CASCADE, null=True, blank = True)
     title               = models.CharField(max_length=254,verbose_name="Titre de l'image'")
     image               = models.ImageField(verbose_name="lmage de l'article", blank=True, null=True)
     description         = models.TextField(blank=True, null=True)
