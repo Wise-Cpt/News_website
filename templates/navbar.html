@@ -37,8 +37,8 @@
                 <div class="top-right clearfix">
                     <!-- Info List -->
 					<ul class="info-list">
-                        <li><a href="">اتصل بنا </a></li>
-						<li class="quote"><a href=""> انضم إلينا</a></li>
+                        <li><a href="{% url 'core:contact'  %}">اتصل بنا </a></li>
+						{% comment %} <li class="quote"><a href=""> انضم إلينا</a></li> {% endcomment %}
                     </ul>
                 </div>
             </div>
@@ -70,22 +70,22 @@
                                     {% for category in categories %}
                                         {% for node in category.children.all %}
                                             {% if node.is_root_node %} 
-                                                <li><a href="{{category.get_absolute_url}}"> no sub {{category.name}}</a></li>
+                                                <li><a href="{{category.get_absolute_url}}"> {{category.name}}</a></li>
                                             {% else %}
-                                                <li class="dropdown"><a href="{{category.get_absolute_url}}">1. {{category.name}}</a>
+                                                <li class="dropdown"><a href="{{category.get_absolute_url}}"> {{category.name}}</a>
                                                     <ul>
                                                         {% for node in category.children.all %}
                                                             {{ node.category.children.count }}
                                                             {% if  node.children.count > 0 %}
-                                                                <li class="dropdown"><a href="{{category.get_absolute_url}}">2. {{node.name}}</a>
+                                                                <li class="dropdown"><a href="{{node.get_absolute_url}}"> {{node.name}}</a>
                                                                     <ul>
                                                                         {% for subact in node.children.all %}
-                                                                        <li><a href="{{category.get_absolute_url}}"> 3. {{subact.name}}</a></li>
+                                                                        <li><a href="{{subact.get_absolute_url}}"> {{subact.name}}</a></li>
                                                                         {% endfor %}
                                                                     </ul>
                                                                 </li>
                                                             {% else %}
-                                                            <li><a href="{{category.get_absolute_url}}"> parent {{ node.name }}</a></li>
+                                                            <li><a href="{{node.get_absolute_url}}">  {{ node.name }}</a></li>
                                                             {% endif %} 
                                                         {% endfor %}
                                                     </ul>
@@ -96,38 +96,9 @@
                                     <li><a href="{% url 'core:index' %}"> الرئيسية</a></li>
 
                                 </ul>
-                                {% comment %} <ul class="navigation clearfix" dir="rtl">
-                                    {% for category in categories %}
-                                        {% if  category.children.count > 0 %}
-                                            <li class="dropdown"><a href="{{category.get_absolute_url}}"> 1.{{category.name}}</a>
-                                                <ul>
-                                                    {% for node in category.children.all %}
-                                                    {{ node.category.children.count }}
-                                                        {% if  node.children.count > 0 %}
-                                                            <li class="dropdown"><a href="{{category.get_absolute_url}}">2. {{node.name}}</a>
-                                                                <ul>
-                                                                    {% for subact in node.children.all %}
-                                                                    <li><a href="{{category.get_absolute_url}}"> 3. {{subact.name}}</a></li>
-                                                                    {% endfor %}
-                                                                </ul>
-                                                            </li>
-                                                        {% else %}
-                                                        <li><a href="{{category.get_absolute_url}}{{category.get_absolute_url}}"> 2..{{ node.name }}</a></li>
-                                                        {% endif %} 
-                                                    {% endfor %}
-                                                </ul>
-                                            </li>
-                                        {% else %}
-                                            <li><a href="{{category.get_absolute_url}}"> 1.. {{category.name}}</a></li>
-                                        {% endif %} 
-                                    {% endfor %}
-                                    <li><a href="{% url 'core:index' %}"> الرئيسية</a></li>
-
-                                </ul> {% endcomment %}
                             </div>
                         </nav>
                         <!-- Main Menu End-->
-						
 						<!-- Outer Box -->
                         <div class="outer-box clearfix">
                             <div class="search-box-btn"><span class="icon flaticon-magnifying-glass-1"></span></div>
@@ -144,7 +115,8 @@
             <div class="close-btn"><span class="icon flaticon-cancel"></span></div>
             
             <nav class="menu-box">
-                <div class="nav-logo"><a href="index-2.html"><img src="images/logo.png" alt="" title=""></a></div>
+                {% comment %} <div class="nav-logo"><a href="index-2.html"><img src="images/logo.png" alt="" title=""></a></div> {% endcomment %}
+                <div class="logo "> <a href="{% url 'core:index' %}">{% if business.logo %}<img class="logo-img" src="{{business.logo.url}}" alt="" /></a>{% endif %}</div>
                 <ul class="navigation clearfix"><!--Keep This Empty / Menu will come through Javascript--></ul>
 				<!--Social Links-->
 				<div class="social-links">

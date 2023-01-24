@@ -1,69 +1,27 @@
 {% extends "base.html" %}
-
+{% load static %}
+{% block extra_seo %}
+    {% comment %} {% if selected_category %}     {% endcomment %}
+	<title>{% if category.meta_title %}{{category.meta_title}}{% else %}{{category.name}}{% endif %} </title> 
+	<meta name="description" content="{% if category.meta_description %} {{category.meta_description}} {% else %}{{category.name}}{% endif %}">
+	<meta name="keywords" content="{% if category.meta_keyword %}{{category.meta_keyword}}{% else %}{{category.name}}{% endif %}">
+    {% comment %} {% endif %} {% endcomment %}
+{% endblock extra_seo %}
 {% block content %}
-
-
-<div class="page-wrapper">
-    <!-- Preloader -->
-    <div class="preloader"></div>
-
-    <!-- Main Slider -->
-	<section class="main-slider style-three">
-		<div class="slider-box">
-		
-			<!-- Banner Carousel -->
-			<div class="banner-carousel owl-theme owl-carousel">
-			
-				
-				<!-- Slide -->
-				<div class="slide" dir="auto">
-                	<div class="image-layer" style="background-image:url(static/images/main-slider/3.jpg)"></div>
-					<div class="auto-container">
-						<div class="content">
-							<h2>تصاميم مفيدة <br> شخصيتك</h2>
-							<div class="text">منذ عام 1989 ، ألهمنا أجزاء من قصص حياتك بأرقى المطابخ والخزائن وأطقم غرف النوم والمعيشة وتناول الطعام</div>
-							<div class="btns-box" >
-								<a href="#" class="theme-btn btn-style-one" ><span class="txt" dir="auto">احصل على عرض أسعار مجاني</span></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				{% comment %} <!-- Slide -->
-				<div class="slide">
-                	<div class="image-layer" style="background-image:url(static/images/main-slider/1.jpg)"></div>
-					<div class="auto-container">
-						<div class="content">
-							<h2>تصاميم مفيدة <br> شخصيتك</h2>
-							<div class="text">منذ عام 1989 ، ألهمنا أجزاء من قصص حياتك بأرقى المطابخ والخزائن وأطقم غرف النوم والمعيشة وتناول الطعام</div>
-							<div class="btns-box">
-								<a href="#" class="theme-btn btn-style-one"><span class="txt">احصل على عرض أسعار مجاني</span></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				
-				<!-- Slide -->
-				<div class="slide">
-                	<div class="image-layer" style="background-image:url(static/images/main-slider/2.jpg)"></div>
-					<div class="auto-container">
-						<div class="content">
-							<h2>تصاميم مفيدة <br> شخصيتك</h2>
-							<div class="text">منذ عام 1989 ، ألهمنا أجزاء من قصص حياتك بأرقى المطابخ والخزائن وأطقم غرف النوم والمعيشة وتناول الطعام</div>
-							<div class="btns-box">
-								<a href="#" class="theme-btn btn-style-one"><span class="txt">احصل على عرض أسعار مجاني</span></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				 {% endcomment %}
-			</div>
-			
-		</div>
-	</section>
-
-	<!--Sidebar Page Container-->
+    <!--Page Title-->
+    <section class="page-title" style="background-image:url(images/background/5.jpg); transform: scaleX(-1);">
+    	<div class="auto-container">
+			{% if category.parent %}
+        	<h2>{{category.parent}}</h2>
+			{% endif %}
+            <ul class="page-breadcrumb"dir="rtl">
+                <li class="page-breadcrumb" >{{category.name}}</li>
+            	<li><a href="{% url 'core:articles' %}">الرئيسية</a></li>
+            </ul>
+        </div>
+    </section>
+    <!--End Page Title-->
+		<!--Sidebar Page Container-->
     <div class="sidebar-page-container">
     	<div class="auto-container">
         	<div class="row clearfix">
@@ -72,7 +30,7 @@
                 	<div class="blog-classic padding-right">
 
                 		<!-- News Block Three-->
-                        {% for article in page_obj %}
+                        {% for article in category_of_article.article.all %}
 							{% if article.actif %}
 							
 							{% comment %} {% else %} {% endcomment %}
@@ -87,7 +45,7 @@
 												<ul class="post-info clearfix">
 													<li><a href="blog-detail.html">By : admin</a></li>
 													<li><a href="blog-detail.html">interior, furniture</a></li>
-													<li><a href="blog-detail.html">Comments: 8</a></li>
+													{% comment %} <li><a href="blog-detail.html">Comments: 8</a></li> {% endcomment %}
 												</ul>
 											</div>
 											<h3><a href="{{article.get_absolute_url}}" dir="auto">{{article.title}}</a></h3>
@@ -190,7 +148,7 @@
                             </div>
 						{% for category in categories %}
                             <ul class="cat-list">
-                                <li><a href="{{category.get_absolute_url}}">{{category.name}}</a></li>
+                                <li><a href="{{category.get_absolute_url}}?category={{category.id}}">{{category.name}}</a></li>
                             </ul>
                         {% endfor %}
                         </div>
@@ -229,14 +187,6 @@
 			</div>
 		</div>
 	</div>
-	
-
-
-	
-</div>  
-<!--End pagewrapper-->
-
- 
 
 
 {% endblock content %}

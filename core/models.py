@@ -16,7 +16,7 @@ class AbstractSEO(models.Model):
         abstract =True
 
 class Issue(AbstractSEO,models.Model):
-    title              = models.CharField(max_length=254, verbose_name="Nom de la categorie")
+    title              = models.CharField(max_length=254, verbose_name="Titre du Numéro")
     slug               = models.SlugField()
     actif              = models.BooleanField(verbose_name='actif', default=True)
     cover_a            = models.ImageField(verbose_name="image de la couverture side A", blank=True, null=True)
@@ -31,20 +31,6 @@ class Issue(AbstractSEO,models.Model):
     def get_absolute_url(self):
         return reverse('core:issuedetail', kwargs={'pk': self.pk})
 
-# class Category(models.Model):
-#     name                = models.CharField(max_length=254, verbose_name="Nom de la categorie")
-#     slug                = models.SlugField()
-#     actif               = models.BooleanField(verbose_name='actif', default=True)
-#     to_home_page        = models.BooleanField(verbose_name="ajouter a la page d'accueil", default=False)
-#     to_footer           = models.BooleanField(verbose_name="ajouter au footer", default=False)
-#     description         = models.TextField(blank=True, null=True)
-#     parent              = models.ForeignKey("self",on_delete=models.SET_NULL, null=True, blank=True)
-
-#     def __str__(self):
-#         return self.name
-
-#     def get_absolute_url(self):
-#         return reverse('core:categorydetail', kwargs={'pk': self.pk})
 class Category(AbstractSEO, MPTTModel):
     name  = models.CharField( max_length=150, verbose_name='Nom')
     slug  = models.SlugField( max_length=150, unique= True, verbose_name='URL')
@@ -64,13 +50,16 @@ class Category(AbstractSEO, MPTTModel):
             self.slug = str(slugify(self.name) + "-" + slugify(int(random.randint(1, 10000)))
                     )
         super(Category, self).save(*args, **kwargs)  
+    # def get_absolute_url(self):
+    #     return reverse('core:articles', kwargs={'pk': self.pk})
     def get_absolute_url(self):
-        return reverse('core:categorydetail', kwargs={'pk': self.pk})
+        return f"/articles/?category={self.id}"
     class Meta:
         verbose_name = 'Catégorie'
         verbose_name_plural = '- Catégories'
     class MPTTMeta:
         order_insertion_by = ["name"]
+
 class Contact(models.Model):
     name        = models.CharField(verbose_name=_('Nom complet'), max_length=100)
     phone       = models.CharField(verbose_name=_("Téléphone") , max_length=25)
@@ -109,11 +98,13 @@ class Article(AbstractSEO, models.Model):
     chapo         = models.CharField( max_length=300, verbose_name='chapô ',blank=True, null=True)
     quote         = models.CharField( max_length=300, verbose_name='phrase mise en avant ', blank=True, null=True)
     texte_top     = tinymce_models.HTMLField(verbose_name='texte haut', blank=True, null=True)
+    texte_image  = tinymce_models.HTMLField(verbose_name='texte deux colonnes', blank=True, null=True)
     texte_bottom  = tinymce_models.HTMLField(verbose_name='texte bas', blank=True, null=True)
     author        = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name="Auteur", related_name="autors", blank=True)
     category      = models.ForeignKey(Category,on_delete=models.CASCADE,  verbose_name="categorie de l'article", related_name="category_of_article")
     issue         = models.ForeignKey(Issue,on_delete=models.CASCADE,   related_name="issue_of_article", blank=True, null=True)
     publish       = models.BooleanField(default=True, verbose_name='Publier',)
+    en_avant = models.BooleanField(verbose_name="mettre en avant a la page d'accueil", default=False)
     to_home_page = models.BooleanField(verbose_name="ajouter a la page d'accueil", default=False)
     actif         = models.BooleanField(default=True)
     date       = models.DateTimeField(verbose_name='Date de publication', blank=True, null=True  )

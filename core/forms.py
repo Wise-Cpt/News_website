@@ -1,19 +1,20 @@
+from django.core.exceptions import ValidationError
 from django.forms import ModelForm
-from .models import Article, Category, ArticleImage
-
-class ImageCreateForm(ModelForm):
-    class Meta:
-        model = ArticleImage
-        fields = '__all__'
+from django import forms
+from .models import  Contact
 
 
-class ArticleCreateForm(ModelForm):
-    class Meta:
-        model = Article
-        fields = '__all__'
+class ContactForm(ModelForm) :
+    username = forms.CharField(required=False)
 
-
-class CategoryCreateForm(ModelForm):
-    class Meta:
-        model = Category
-        fields = '__all__'
+    class Meta: 
+        model = Contact 
+        fields = '__all__' 
+        
+    def clean(self):
+        cleaned_data = super().clean()
+        username = cleaned_data.get("username")
+        if username:
+            raise ValidationError(
+                    "BAD BOT"
+                )

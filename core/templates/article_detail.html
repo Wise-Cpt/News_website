@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}
-<title>detail-{{article.title}}</title>
-{% endblock title %}
+{% block extra_seo %}
+	<title>{% if articel.meta_title %}{{articel.meta_title}}{% else %}{{articel.title}}{% endif %} </title> 
+	<meta name="description" content="{% if articel.meta_description %} {{articel.meta_description}} {% else %}{{articel.text}}{% endif %}">
+	<meta name="keywords" content="{% if articel.meta_keyword %}{{articel.meta_keyword}}{% else %}{{articel.name}}{% endif %}">
+{% endblock extra_seo %}
+    
 
 {% block content %}
 
@@ -13,230 +16,66 @@
         	<h2>تفاصيل المقال</h2>
             <ul class="page-breadcrumb" dir="rtl">
                 <li class="page-breadcrumb" dir="rtl">تفاصيل المقال</li>
-            	<li dir="rtl"><a href="{% url 'core:articlelist' %}">الرئيسية</a></li>
+            	<li dir="rtl"><a href="{% url 'core:index' %}">الرئيسية</a></li>
             </ul>
         </div>
     </section>
     <!--End Page Title-->
-	
-
-	<!--Sidebar Page Container-->
+	<!--article Page Container-->
     <div class="sidebar-page-container">
     	<div class="auto-container">
         	<div class="row clearfix">
-            	
                 <!--Content Side / Blog Classic -->
-                <div class="content-side col-xl-8 col-lg-8 col-md-12 col-sm-12">
+                <div class="content-side col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 	<div class="blog-single padding-right">
-						<div class="inner-box">
+                        <h2 class="text-dark">{{article.title}}</h2>
+                        <h5>{{article.chapo}}</h5>
+						<div class="inner-box my-3">
 							<div class="image-box">
-                                <figure class="image"><img src="{{article.image.image.url}}" alt=""></figure>
-                                <span class="date">9 may 2019</span>
+                                <figure class="image"><a href="{{article.get_absolute_url}}">{% if article.first_image %}<img class="default-img" src="{{article.first_image}}" alt="" />{% else %}<img src="{% static 'images/background/5.jpg' %}" alt="">  {% endif %}</a></figure>
+                                <span class="date">{{article.date|date:'Y-m-d'}}</span>
                             </div>
                             <div class="lower-content">
                                 <div class="post-meta">
                                     <ul class="post-info clearfix">
-                                        <li><a href="blog-detail.html">By : admin</a></li>
-                                        <li><a href="blog-detail.html">interior, furniture</a></li>
-                                        <li><a href="blog-detail.html">Comments: 8</a></li>
+                                        <li><a href="blog-detail.html">{{article.author}}</a></li>
+                                        <li><a href="{{article.category.get_absolute_url}}">{{article.category}}</a></li>
                                     </ul>
                                 </div>
 								<div class="lower-box" dir="rtl">
-									<h3>{{article.title}}</h3>
+									{% comment %} <h3>{{article.title}}</h3> {% endcomment %}
 									<div class="text">
-                                    {{article.description_max|safe}}
-										<h4>Two Column Text Sample</h4>
+                                        {{article.texte_top|safe}}
+										<h4>&quot;{{article.quote}}&quot;</h4>
 										<div class="row clearfix">
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est.</p>
+                                                <figure class="image"><a href="{{article.get_absolute_url}}">{% if article.first_image %}<img class="default-img" src="{{article.first_image}}" alt="" />{% else %}<img src="{% static 'images/background/5.jpg' %}" alt="">  {% endif %}</a></figure>
 											</div>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est.</p>
+                                                {{article.texte_image|safe}}
 											</div>
 										</div>
-										<p>Here is main text quis nostrud exercitation ullamco laboris nisi here is itealic text ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla rure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat <a href="#">here is link</a> cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                        {{article.texte_bottom|safe}}
 									</div>
 								</div>
 							</div>
 						</div>
-
-
-                        
-                    	
-                        {% comment %} <!--Comments Area-->
-                        <div class="comments-area">
-                            <div class="group-title"><h2>Comments 4</h2></div>
-                            <div class="inner-box">
-                                <!--Comment Box-->
-                                <div class="comment-box">
-                                    <div class="comment">
-                                        <div class="author-thumb"><img src="images/resource/author-1.jpg" alt=""></div>
-                                        <div class="comment-inner">
-                                            <div class="comment-info clearfix"><strong>Sarah john</strong></div>
-                                            <div class="text">Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps.</div>
-                                            <ul class="post-info">
-                                                <li>08 Feb, 2019</li>
-                                                <li><a href="#">Reply</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!--Comment Box-->
-                                <div class="comment-box">
-                                    <div class="comment">
-                                        <div class="author-thumb"><img src="images/resource/author-2.jpg" alt=""></div>
-                                        <div class="comment-inner">
-                                            <div class="comment-info clearfix"><strong>Robert john</strong></div>
-                                            <div class="text">Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps.</div>
-                                            <ul class="post-info">
-                                                <li>08 Feb, 2019</li>
-                                                <li><a href="#">Reply</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!--Comment Box-->
-                                <div class="comment-box">
-                                    <div class="comment">
-                                        <div class="author-thumb"><img src="images/resource/author-1.jpg" alt=""></div>
-                                        <div class="comment-inner">
-                                            <div class="comment-info clearfix"><strong>Sarah john</strong></div>
-                                            <div class="text">Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps.</div>
-                                            <ul class="post-info">
-                                                <li>08 Feb, 2019</li>
-                                                <li><a href="#">Reply</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="comment reply-comment">
-                                        <div class="author-thumb"><img src="images/resource/author-2.jpg" alt=""></div>
-                                        <div class="comment-inner">
-                                            <div class="comment-info clearfix"><strong>Robert john</strong></div>
-                                            <div class="text">Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps.</div>
-                                            <ul class="post-info">
-                                                <li>08 Feb, 2019</li>
-                                                <li><a href="#">Reply</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                                
-                                <!--Comment Box-->
-                                <div class="comment-box">
-                                    <div class="comment">
-                                        <div class="author-thumb"><img src="images/resource/author-1.jpg" alt=""></div>
-                                        <div class="comment-inner">
-                                            <div class="comment-info clearfix"><strong>Sarah john</strong></div>
-                                            <div class="text">Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps.</div>
-                                            <ul class="post-info">
-                                                <li>08 Feb, 2019</li>
-                                                <li><a href="#">Reply</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        
-                        <!-- Comment Form -->
-                        <div class="comment-form">
-                                
-                            <div class="group-title"><h2>Leave a Comment</h2></div>
-                            <div class="form-inner">
-                                <!--Comment Form-->
-                                <form method="post" action="http://t.commonsupport.com/stella-orre/blog.html">
-                                    <div class="row clearfix">
-                                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                            <input type="text" name="username" placeholder="Your name" required>
-                                        </div>
-                                        
-                                        <div class="col-md-6 col-sm-6 col-xs-12 form-group">
-                                            <input type="email" name="email" placeholder="Email address" required>
-                                        </div>
-                                        
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
-                                            <textarea name="message" placeholder="Write message"></textarea>
-                                        </div>
-                                        
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
-                                            <button class="theme-btn submit-btn" type="submit" name="submit-form">Post Comment</button>
-                                        </div>
-                                        
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!--End Comment Form -->
-                         {% endcomment %}
                     </div>
 				</div>
-
-                                        <!--Sidebar Side-->
-				<div class="sidebar-side col-xl-3 col-lg-4 col-md-12 col-sm-12">
-					<aside class="sidebar">
-                        
-						<!-- Search -->
-                        <div class="sidebar-widget search-box">
-                        	<form method="post" action="templateshub.net">
-                                <div class="form-group">
-                                    <input type="search" name="search-field" value="" placeholder="ابحث هنا" required>
-                                    <button type="submit"><span class="icon fa fa-search"></span></button>
-                                </div>
-                            </form>
-						</div>
-						
-						<!--Blog Category Widget-->
-
-                        <div class="sidebar-widget sidebar-blog-category">
-                            <div class="sidebar-title">
-                                <h2>التصنيفات</h2>
-                            </div>
-						{% for category in categories %}
-                            <ul class="cat-list">
-                                <li><a href="{{category.get_absolute_url}}?category={{category.id}}">{{category.name}}</a></li>
-                            </ul>
-                        {% endfor %}
-                        </div>
-						
-						<!-- Popular Posts -->
-                        <div class="sidebar-widget popular-posts">
-                            <div class="sidebar-title"><h2>اخر الاخبار</h2></div>
-                            {% for article in articles %}
-								{% if article.actif %}
-								
-									<article class="post">
-										<figure class="post-thumb"><a href="{{article.get_absolute_url}}"><img src="{{article.image.image.url}}" alt="{{article.image.title}}"></a></figure>
-										<div class="text"><a href="{{article.get_absolute_url}}">{{article.title}}</a></div>
-										{% if article.updated %}
-											<div class="post-info">{{article.updated}}</div>
-										{% else %}
-											<div class="post-info">{{article.created}}</div>
-										{% endif %}
-									</article>
-								{% endif %}
-                            {% endfor %}
-
-                        </div>
-						
-						{% comment %} <!-- Popular Tags -->
-                        <div class="sidebar-widget popular-tags">
-                            <div class="sidebar-title"><h2>Tags</h2></div>
-                            <a href="#">Interior Tips</a>
-                            <a href="#">Lighting</a>
-                            <a href="#">Designs</a>
-                        </div> {% endcomment %}
-
-					</aside>
-				</div>
-
             </div>
         </div>
     </div>
-
-
+    <section class="services-section-three">
+		<div class="auto-container">
+			<!-- Sec Title -->
+			<div class="sec-title centered">
+				<h2>  اقرأ أيضًا</h2>
+			</div>
+			<div class="row clearfix">
+				{% for article in related_articles %}	
+					{% include 'partials/article_card.html' %}
+				{% endfor %}
+			</div>
+		</div>
+	</section>
 {% endblock content %}

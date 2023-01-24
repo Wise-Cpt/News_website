@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_seo %}
+    {% if selected_category %}    
+	<title>{% if category.meta_title %}{{category.meta_title}}{% else %}{{category.name}}{% endif %} </title> 
+	<meta name="description" content="{% if category.meta_description %} {{category.meta_description}} {% else %}{{category.name}}{% endif %}">
+	<meta name="keywords" content="{% if category.meta_keyword %}{{category.meta_keyword}}{% else %}{{category.name}}{% endif %}">
+    {% endif %}
+{% endblock extra_seo %}
+{% block content %}
+    <!--Page Title-->
+    <section class="page-title" style="background-image:url(images/background/5.jpg); transform: scaleX(-1);">
+    	<div class="auto-container">
+			{% if category.parent %}
+        	<h2>{{category.parent}}</h2>
+			{% endif %}
+            <ul class="page-breadcrumb"dir="rtl">
+                <li class="page-breadcrumb" >{{category.name}}</li>
+            	<li><a href="{% url 'core:articles' %}">الرئيسية</a></li>
+            </ul>
+        </div>
+    </section>
+    <!--End Page Title-->
+
+	<div class="sidebar-page-container">
+    	<div class="auto-container">
+        	<div class="row clearfix">
+                <!--Content Side / Blog Classic -->
+                <div class="content-side col-xl-8 col-lg-8 col-md-12 col-sm-12">
+                	<div class="blog-classic padding-right">
+						<!-- News Block Three--> 
+                        {% for article in article_categories %}
+							{% include 'partials/article_block.html' %}
+                        {% endfor %}
+					</div>
+				</div>
+				
+				<!--Sidebar Side-->
+				<div class="sidebar-side col-xl-4 col-lg-4 col-md-12 col-sm-12">
+					<aside class="sidebar">
+						<!-- Search -->
+                        <div class="sidebar-widget search-box">
+                        	<form method="post" action="templateshub.net">
+                                <div class="form-group">
+                                    <input type="search" name="search-field" value="" placeholder="ابحث هنا" required>
+                                    <button type="submit"><span class="icon fa fa-search"></span></button>
+                                </div>
+                            </form>
+						</div>
+						<!--Blog Category Widget-->
+                        <div class="sidebar-widget sidebar-blog-category">
+                            <div class="sidebar-title">
+                                <h2>التصنيفات</h2>
+                            </div>
+						{% for category in categories %}
+                            <ul class="cat-list">
+                                <li><a href="{{category.get_absolute_url}}">{{category.name}}</a></li>
+                            </ul>
+                        {% endfor %}
+                        </div>
+						<!-- Popular Posts -->
+                        <div class="sidebar-widget popular-posts">
+                            <div class="sidebar-title"><h2>اخر الاخبار</h2></div>
+                            {% for article in articles %}
+								{% include 'partials/article_block_list.html' %}
+                            {% endfor %}
+
+                        </div>
+					</aside>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+ 
+	<section class="services-section-three">
+		<div class="auto-container">
+			<!-- Sec Title -->
+			<div class="sec-title centered">
+				<h2>  اقرأ أيضًا</h2>
+			</div>
+			<div class="row clearfix">
+				{% for article in article_categories %}	
+					{% include 'partials/article_card.html' %}
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+
+{% endblock content %}
