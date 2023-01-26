@@ -18,7 +18,7 @@ class ImageAdmin(admin.ModelAdmin):
     list_per_page = 40
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name',  'actif','to_home_page', 'to_footer')
+    list_display = ('id', 'name', 'parent', 'actif','to_home_page', 'to_footer')
     prepopulated_fields = {"slug": ("name",)}
     list_display_links = ('id','name' )
     list_per_page = 50

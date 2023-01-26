@@ -29,12 +29,13 @@ class IndexView(TemplateView):
         return context
 
 ########## ARTICLE ##########
-#### LIST 
+
+#### LIST #######
 def articles_view(request):
     filtered_products= get_filtered_articles(request)
     context = filtered_products['context']
     queryset = filtered_products['qs']
-    context['articles'] = queryset
+    context['articles'] = queryset.order_by('-updated')
     #start paginate
     paginator = Paginator(queryset, 21)
     page = request.GET.get('page')
@@ -48,7 +49,8 @@ def articles_view(request):
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
     context['parameters'] = parameters
     return render(request, 'articles.html', context)
-#### DETAIL
+
+######### DETAIL ##########
 class ArticleDetailView(DetailView):
     template_name = "article_detail.html"
     model = Article 
@@ -59,6 +61,7 @@ class ArticleDetailView(DetailView):
         articles =  Article.objects.filter(category=category, publish=True)
         context["related_articles"] = articles.exclude(id= article.id).order_by('?')[:8]
         context["categories"] = Category.objects.all()
+        # context["article_categories"] = get_filtered_articles
         return context
 
 ########## CONTACT ##########

@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
 from django.utils.text import slugify
 from account.models import Profile 
+
 # Create your models here.
 
 class AbstractSEO(models.Model):

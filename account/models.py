@@ -4,7 +4,7 @@ from django.conf import settings
 
 class Role(models.Model):
     name    = models.CharField(max_length=30, verbose_name="role")
-    active  = models.BooleanField(default=True, verbose_name="Livraison Active")
+    active  = models.BooleanField(default=True, verbose_name="Active")
     class Meta:
         verbose_name = "Role"
         verbose_name_plural = "Roles"        

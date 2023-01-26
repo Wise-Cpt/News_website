@@ -1,7 +1,0 @@
-User-agent: *
-
-Allow: *
-
-Disallow: /admin-zone/
-
-Sitemap: https://www.forloop.com/sitemap_index.xml

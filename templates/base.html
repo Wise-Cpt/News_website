@@ -23,6 +23,7 @@
                 <link rel="icon" type="image/png" sizes="16x16" href="{{business.favicon.url}}">
                 <link rel="shortcut icon" href="{{business.favicon.url}}">
             {% endif %}
+
             {% block extra_seo %}
             <title>{{business.title}}</title>
             <meta name="keywords" content="{{business.meta_keyword}}">
@@ -47,6 +48,7 @@
         {% endblock content %}
 
         {% include "footer.html" %}
+        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
             <script src="{% static 'js/jquery.js' %}"></script>
             <script src="{% static 'js/popper.min.js' %}"></script>
             <script src="{% static 'js/jquery-ui.js' %}"></script>

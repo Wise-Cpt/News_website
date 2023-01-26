@@ -5781,7 +5781,7 @@ img{
 	padding-bottom:0px;
 }
 
-.cat-list li a:after{
+/* .cat-list li a:after{
 	position:absolute;
 	content: "\f105";
 	right:0px;
@@ -5790,7 +5790,7 @@ img{
 	font-size:14px;
 	font-weight:900;
 	font-family: "Font Awesome 5 Free";
-}
+} */
 
 .cat-list li a:hover{
 	color:#e2b15e;
