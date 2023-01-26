@@ -88,47 +88,10 @@
                             <div class="sidebar-title">
                                 <h2>التصنيفات</h2>
                             </div>
-						{% for category in categories %}
-						<div x-data="{ open: false }"> <button @click="open = ! open"> <div >  <i class="fa fa-arrow-down fa-stack-1x" ></i></div> 	</button>  
-						{% comment %} <div x-data="{ open: false }"> <button @click="open = ! open"> <div >  button </button>   {% endcomment %}
-                            {% if category.is_root_node %}
-								<ul class="cat-list" dir="ltr">
-                                	<li class="" >
-									
-									<a href="{{category.get_absolute_url}}">{{category.name}}</a>
-									</li>
-                            	</ul> 
-							{% comment %} {% elif category.children.is_root_node %} {% endcomment %}
-							{% else %}
-							<div x-show="open" @click.outside="open = false" >
-									<div >  <i class="fa fa-arrow-down fa-stack-1x" ></i></div>
-									<li class=""><a href="{{category.get_absolute_url}}"> {{category.name}}</a>
-											<ul>
-												{% for node in category.children.all %}
-													{{ node.category.children.count }}
-													{% if  node.children.count > 0 %}
-														{% comment %} <div>  <i class="fa fa-arrow-down fa-stack-1x" ></i></div> {% endcomment %}
-														<li class=""><a href="{{node.get_absolute_url}}"> {{node.name}}</a>
-
-															<ul>
-																{% for subact in node.children.all %}
-																<li><a href="{{subact.get_absolute_url}}"> {{subact.name}}</a></li>
-																{% endfor %}
-															</ul>
-														</li>
-													{% else %}
-													<li><a href="{{node.get_absolute_url}}">  {{ node.name }}</a></li>
-													{% endif %} 
-												{% endfor %}
-											</ul>
-										</li>
-
-									</div>
-									{% endif %}
-									</div>
-								{% endfor %}
-
-                        </div>
+							{% for category in categories %}
+								{% include 'partials/category_list.html' %}
+							{% endfor %}
+						</div>
 						
 						<!-- Popular Posts -->
                         <div class="sidebar-widget popular-posts">

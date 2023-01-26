@@ -52,11 +52,9 @@
                             <div class="sidebar-title">
                                 <h2>التصنيفات</h2>
                             </div>
-						{% for category in categories %}
-                            <ul class="cat-list">
-                                <li><a href="{{category.get_absolute_url}}">{{category.name}}</a></li>
-                            </ul>
-                        {% endfor %}
+							{% comment %} {% for category in categories %} {% endcomment %}
+								{% include 'partials/category_list.html' %}
+							{% comment %} {% endfor %} {% endcomment %}
                         </div>
 						<!-- Popular Posts -->
                         <div class="sidebar-widget popular-posts">

@@ -1,6 +1,6 @@
 {% load static %}
+{% load mptt_tags %}
 {% block content %}
-
 <header class="main-header header-style-one">
         <!--Header Top-->
         <div class="header-top">
@@ -67,6 +67,44 @@
                             
                             <div class="collapse navbar-collapse clearfix" id="navbarSupportedContent" >
                                 <ul class="navigation clearfix" dir="rtl">
+                                    {% recursetree categories %}
+                                        {% if not node.is_leaf_node %}
+                                            {% if node.actif %}
+                                                <li class="dropdown"><a href="{{node.get_absolute_url}}"> {{node.name}}</a>
+                                                    <ul>
+                                                        {% for sub_cat in node.children.all %}
+                                                            {% if not sub_cat.is_leaf_node %}
+                                                                <li class="dropdown"><a href="{{sub_cat.get_absolute_url}}"> {{sub_cat.name}}</a>
+                                                                    <ul>
+                                                                        {% for child in sub_cat.children.all %}
+                                                                        {% if  child.is_leaf_node %}
+                                                                            <li><a href="{{child.get_absolute_url}}">  {{child.name}}</a></li>
+                                                                        {% else %}
+                                                                            <li class="dropdown" ><a href="{{sub_cat.get_absolute_url}}"> {{child.name}}</a>
+                                                                                <ul class="dropdown">
+                                                                                    {% for gran_child in child.children.all %}
+                                                                                        <li class="dropdown"><a href="{{child.get_absolute_url}}">  {{gran_child.name}}</a></li>
+                                                                                    {% endfor %}
+                                                                                </ul>
+                                                                            </li>
+                                                                            {% endif %}
+                                                                        {% endfor %}
+                                                                    </ul>
+                                                                </li>
+                                                            {% else %}
+                                                                <li><a href="{{sub_cat.get_absolute_url}}">  {{ sub_cat.name }}</a></li>
+                                                            {% endif %} 
+                                                        {% endfor %}
+                                                    </ul>
+                                                </li>
+                                            {% endif %} 
+                                        {% else %}
+                                            <li><a href="{{node.get_absolute_url}}">  {{node.name}}</a></li>
+                                        {% endif %} 
+                                    {% endrecursetree %}
+                                    <li><a href="{% url 'core:index' %}"> الرئيسية</a></li>
+                                </ul>
+                                {% comment %} <ul class="navigation clearfix" dir="rtl">
                                     {% for category in categories %}
                                         {% for node in category.children.all %}
                                             {% if node.is_root_node %} 
@@ -94,8 +132,7 @@
                                         {% endfor %}
                                     {% endfor %}
                                     <li><a href="{% url 'core:index' %}"> الرئيسية</a></li>
-
-                                </ul>
+                                </ul> {% endcomment %}
                             </div>
                         </nav>
                         <!-- Main Menu End-->

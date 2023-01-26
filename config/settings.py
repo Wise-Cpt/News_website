@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'markdownx',
     'solo',
     'whitenoise', 
+    'mptt',
     
     "account",
     "business",
