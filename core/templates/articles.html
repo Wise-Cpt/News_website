@@ -15,7 +15,7 @@
         	<h2>{{category.parent}}</h2>
 			{% endif %}
             <ul class="page-breadcrumb"dir="rtl">
-                <li class="page-breadcrumb" >{{category.name}}</li>
+                {% comment %} <li class="page-breadcrumb" >{{category.name}}</li> {% endcomment %}
             	<li><a href="{% url 'core:articles' %}">الرئيسية</a></li>
             </ul>
         </div>
@@ -52,15 +52,15 @@
                             <div class="sidebar-title">
                                 <h2>التصنيفات</h2>
                             </div>
-							{% comment %} {% for category in categories %} {% endcomment %}
-								{% include 'partials/category_list.html' %}
-							{% comment %} {% endfor %} {% endcomment %}
+							{% for category in categories %}
+								{% include 'partials/sidebar/category_list.html' %}
+							{% endfor %}
                         </div>
 						<!-- Popular Posts -->
                         <div class="sidebar-widget popular-posts">
                             <div class="sidebar-title"><h2>اخر الاخبار</h2></div>
-                            {% for article in articles %}
-								{% include 'partials/article_block_list.html' %}
+                            {% for article in article_categories %}
+								{% include 'partials/sidebar/side_bar_cards.html' %}
                             {% endfor %}
 
                         </div>
@@ -78,7 +78,8 @@
 				<h2>  اقرأ أيضًا</h2>
 			</div>
 			<div class="row clearfix">
-				{% for article in article_categories %}	
+				{% for article in article_categories %}
+
 					{% include 'partials/article_card.html' %}
 				{% endfor %}
 			</div>

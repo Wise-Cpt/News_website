@@ -1,8 +1,6 @@
 {% load static %}
 {% load mptt_tags %}
 
-{% block content %}
-
 
 {% comment %} <div x-data="{ open: false }"> <button @click="open = ! open"> <div >  <i class="fa fa-arrow-down fa-stack-1x" ></i></div> 	</button>   {% endcomment %}
     
@@ -43,11 +41,5 @@
 
 {% comment %} </div> {% endcomment %}
 
-<article class="post">
-    <figure class="post-thumb"><a href="{{article.get_absolute_url}}">{% if article.first_image %}<img  src="{{article.first_image}}" alt="" />{% else %}<img src="{% static 'images/background/5.jpg' %}" alt="">  {% endif %}</a></figure>
-    <div class="text"><a href="{{article.get_absolute_url}}">{{article.title}}</a></div>
-    <div class="post-info">{{article.date|date:'Y-m-d'}}</div>
-</article>
 
-{% endblock content %}
 

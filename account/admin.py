@@ -4,6 +4,6 @@ from .models import Profile, Role
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['user' , 'phone' , 'address', 'picture', ]
+    list_display = ['user', 'username' , 'phone' , 'address', 'picture', ]
 
 admin.site.register(Role) 

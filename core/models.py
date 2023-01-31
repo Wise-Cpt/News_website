@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
 from django.utils.text import slugify
 from account.models import Profile 
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -55,6 +56,7 @@ class Category(AbstractSEO, MPTTModel):
     #     return reverse('core:articles', kwargs={'pk': self.pk})
     def get_absolute_url(self):
         return f"/articles/?category={self.id}"
+    
     class Meta:
         verbose_name = 'Catégorie'
         verbose_name_plural = '- Catégories'
@@ -101,7 +103,7 @@ class Article(AbstractSEO, models.Model):
     texte_top     = tinymce_models.HTMLField(verbose_name='texte haut', blank=True, null=True)
     texte_image  = tinymce_models.HTMLField(verbose_name='texte deux colonnes', blank=True, null=True)
     texte_bottom  = tinymce_models.HTMLField(verbose_name='texte bas', blank=True, null=True)
-    author        = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name="Auteur", related_name="autors", blank=True)
+    authors        = models.ManyToManyField(Profile, verbose_name="Auteur", related_name="autors", blank=True)
     category      = models.ForeignKey(Category,on_delete=models.CASCADE,  verbose_name="categorie de l'article", related_name="category_of_article")
     issue         = models.ForeignKey(Issue,on_delete=models.CASCADE,   related_name="issue_of_article", blank=True, null=True)
     publish       = models.BooleanField(default=True, verbose_name='Publier',)
@@ -135,6 +137,11 @@ class Article(AbstractSEO, models.Model):
         except:
             pass
         return image
+
+    @property
+    def get_authors(self):
+        return ",".join([author.username for author in self.authors.all()])
+        
 
 class ArticleImage(models.Model):
     article             = models.ForeignKey(Article, related_name="photos", on_delete=models.CASCADE, null=True, blank = True)

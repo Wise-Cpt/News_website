@@ -1685,7 +1685,7 @@ img{
 
 .mobile-menu .navigation li.dropdown .dropdown-btn{
 	position:absolute;
-	right:6px;
+	right:83%;
 	top:6px;
 	width:32px;
 	height:32px;
@@ -5175,7 +5175,7 @@ img{
 .page-breadcrumb li:after{
 	position:absolute;
 	content: "\f149";
-	right:-2px;
+	right:100%;
 	top:1px;
 	color:#ffffff;
 	font-size:8px;

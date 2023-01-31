@@ -10,7 +10,7 @@ def get_filtered_articles(request):
     qs = Article.objects.filter(publish=True)
     dictio = []
     category_id = request.GET.get('category')
-    context["article_categories"] = Category.objects.filter(level=0, actif=True)
+    context["article_categories"] = Category.objects.filter( actif=True)
 
     if is_valid_queryparam(category_id):
         cat = Category.objects.get(id=category_id)

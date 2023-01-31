@@ -31,9 +31,9 @@ class ArticleAdmin( admin.ModelAdmin):
     list_display_links = ('id','title' , )
     list_per_page = 40
     save_as = True
-    list_filter = ( 'title', 'category','author', 'publish', 'created','updated' )
+    list_filter = ( 'title', 'category','authors', 'publish', 'created','updated' )
     list_editable = [ 'category','publish',]
-    search_fields = ('title', 'category','author', 'publish',)
+    search_fields = ('title', 'category','authors', 'publish',)
     inlines = [ArticleImageLinesAdmin,]
 
 class ContactAdmin(admin.ModelAdmin):     
