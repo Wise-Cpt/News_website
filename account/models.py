@@ -24,6 +24,7 @@ class Profile(models.Model):
         # return f'{self.username}'
         return str(self.username)
 
-
+    def get_articles_of_author(self):
+        return f"/articles/?author={self.id}"
 
  

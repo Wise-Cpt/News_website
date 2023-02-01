@@ -9,12 +9,13 @@
             <div class="lower-content">
                 <div class="post-meta">
                     <ul class="post-info clearfix">
-                        <li><a href="{{article.get_absolute_url}}"> {{article.get_authors}} author's articles</a></li> <!-- check each author -->
+                        <li><a href="{{article.get_articles_of_author}}"> {{article.get_authors}} author's articles</a></li> <!-- check each author -->
                         <li><a href="{{article.category.get_absolute_url}}">{{article.category}}</a></li>
+                        {{myfilter.form}}OUSAMDA
                     </ul>
                 </div>
                 <h3><a href="{{article.get_absolute_url}}">{{article.title}}</a></h3>
-                <div class="text"> {{article.aperçu}}</div>
+                <div class="text"> {{article.apercu}}</div>
                 <div class="link-box"><a href="{{article.get_absolute_url}}" class="theme-btn read-more">اقرء المزيد</a></div>
             </div>
         </div>

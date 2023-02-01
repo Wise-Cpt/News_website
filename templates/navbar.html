@@ -8,28 +8,21 @@
                 <div class="top-left clearfix">
                     <div class="text">
                         {% if business.linkedin %}
-                        <a href="{{business.linkedin}}"><img class="social-img" src="{% static 'images/icons/icons-linkedin-circled.svg' %}" alt=""></a>
-                        {% endif %}
-                        {% if business.facebook %}
-                         <a href="{{business.facebook}}"><img class="social-img" src="{% static 'images/icons/icon-facebook-white.svg' %}" alt=""></a>
-                        {% endif %}
-                        {% if business.insta %}
-                        <a href="{{business.insta}}"><img class="social-img" src="{% static 'images/icons/icon-instagram-white.svg' %}" alt=""></a>
-                        {% endif %}
-                        {% if business.snapchat %}
-                        <a href="{{business.snapchat}}"><img class="social-img" src="{% static 'images/icons/icons-snapchat.svg' %}" alt=""></a>
-                        {% endif %}
-                        {% if business.tiktok %}
-                        <a href="{{business.tiktok}}"><img class="social-img" src="{% static 'images/icons/icons-tiktok.svg' %}" alt=""></a>
-                        {% endif %}
-                        {% if business.twitter %}
-                        <a href="{{business.twitter}}"><img class="social-img" src="{% static 'images/icons/icon-twitter-white.svg' %}" alt=""></a>
-                        {% endif %}
-                        {% if business.pinterest %}
-                        <a href="{{business.pinterest}}"><img class="social-img" src="{% static 'images/icons/icon-pinterest-white.svg' %}" alt=""></a>
-                        {% endif %}
-                        {% if business.youtube %}
-                        <a href="{{business.youtube}}"><img class="social-img" src="{% static 'images/icons/icon-youtube-white.svg' %}" alt=""></a>
+                            <a href="{{business.linkedin}}"><img class="social-img" src="{% static 'images/icons/icons-linkedin-circled.svg' %}" alt=""></a>
+                        {% elif business.facebook %}
+                            <a href="{{business.facebook}}"><img class="social-img" src="{% static 'images/icons/icon-facebook-white.svg' %}" alt=""></a>
+                        {% elif business.insta %}
+                            <a href="{{business.insta}}"><img class="social-img" src="{% static 'images/icons/icon-instagram-white.svg' %}" alt=""></a>
+                        {% elif business.snapchat %}
+                            <a href="{{business.snapchat}}"><img class="social-img" src="{% static 'images/icons/icons-snapchat.svg' %}" alt=""></a>
+                        {% elif business.tiktok %}
+                            <a href="{{business.tiktok}}"><img class="social-img" src="{% static 'images/icons/icons-tiktok.svg' %}" alt=""></a>
+                        {% elif business.twitter %}
+                            <a href="{{business.twitter}}"><img class="social-img" src="{% static 'images/icons/icon-twitter-white.svg' %}" alt=""></a>
+                        {% elif business.pinterest %}
+                            <a href="{{business.pinterest}}"><img class="social-img" src="{% static 'images/icons/icon-pinterest-white.svg' %}" alt=""></a>
+                        {% elif business.youtube %}
+                            <a href="{{business.youtube}}"><img class="social-img" src="{% static 'images/icons/icon-youtube-white.svg' %}" alt=""></a>
                         {% endif %}
                     </div>
 					
@@ -104,38 +97,11 @@
                                     {% endrecursetree %}
                                     <li><a href="{% url 'core:index' %}"> الرئيسية</a></li>
                                 </ul>
-                                {% comment %} <ul class="navigation clearfix" dir="rtl">
-                                    {% for category in categories %}
-                                        {% for node in category.children.all %}
-                                            {% if node.is_root_node %} 
-                                                <li><a href="{{category.get_absolute_url}}"> {{category.name}}</a></li>
-                                            {% else %}
-                                                <li class="dropdown"><a href="{{category.get_absolute_url}}"> {{category.name}}</a>
-                                                    <ul>
-                                                        {% for node in category.children.all %}
-                                                            {{ node.category.children.count }}
-                                                            {% if  node.children.count > 0 %}
-                                                                <li class="dropdown"><a href="{{node.get_absolute_url}}"> {{node.name}}</a>
-                                                                    <ul>
-                                                                        {% for subact in node.children.all %}
-                                                                        <li><a href="{{subact.get_absolute_url}}"> {{subact.name}}</a></li>
-                                                                        {% endfor %}
-                                                                    </ul>
-                                                                </li>
-                                                            {% else %}
-                                                            <li><a href="{{node.get_absolute_url}}">  {{ node.name }}</a></li>
-                                                            {% endif %} 
-                                                        {% endfor %}
-                                                    </ul>
-                                                </li>
-                                            {% endif %} 
-                                        {% endfor %}
-                                    {% endfor %}
-                                    <li><a href="{% url 'core:index' %}"> الرئيسية</a></li>
-                                </ul> {% endcomment %}
+
                             </div>
                         </nav>
                         <!-- Main Menu End-->
+
 						<!-- Outer Box -->
                         <div class="outer-box clearfix">
                             <div class="search-box-btn"><span class="icon flaticon-magnifying-glass-1"></span></div>
@@ -152,8 +118,7 @@
             <div class="close-btn"><span class="icon flaticon-cancel"></span></div>
             
             <nav class="menu-box">
-                {% comment %} <div class="nav-logo"><a href="index-2.html"><img src="images/logo.png" alt="" title=""></a></div> {% endcomment %}
-                <div class="logo "> <a href="{% url 'core:index' %}">{% if business.logo %}<img class="logo-img" src="{{business.logo.url}}" alt="" /></a>{% endif %}</div>
+                <div class="logo "style="position:relative;right: 60% !important" > <a href="{% url 'core:index' %}">{% if business.logo %}<img class="logo-img" src="{{business.logo.url}}" alt="" /></a>{% endif %}</div>
                 <ul class="navigation clearfix"><!--Keep This Empty / Menu will come through Javascript--></ul>
 				<!--Social Links-->
 				<div class="social-links">

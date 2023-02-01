@@ -142,6 +142,9 @@ class Article(AbstractSEO, models.Model):
     def get_authors(self):
         return ",".join([author.username for author in self.authors.all()])
         
+    # @property
+    # def get_articles_of_author(self):
+    #     return [print(article) for article in self.article.authors]
 
 class ArticleImage(models.Model):
     article             = models.ForeignKey(Article, related_name="photos", on_delete=models.CASCADE, null=True, blank = True)
