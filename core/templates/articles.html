@@ -29,9 +29,32 @@
                 <div class="content-side col-xl-8 col-lg-8 col-md-12 col-sm-12">
                 	<div class="blog-classic padding-right">
 						<!-- News Block Three--> 
-                        {% for article in article_categories %}
+                        {% for article in articles %}
 							{% include 'partials/article_block.html' %}
                         {% endfor %}
+						<div class="pagination">
+							<ul class="styled-pagination">
+								{% if articles.has_previous %}
+									<li><a href="?page={{ articles.previous_page_number }}&{{parameters}}"><span class="fa fa-angle-left"></span></a></li>
+								{% endif %}
+
+								{% for article in articles.paginator %}
+								
+									<li 
+										{% if article.number is articles.number %}
+										class="active"
+										{% endif %}
+									>
+									<a href="?page={{ article.number }}&{{parameters}}" > {{ article.number }} </a>
+									</li>
+								{% endfor %}
+								{% if articles.has_next %}
+									<!-- <a href="?page={{ articles.next_page_number }}">next</a> -->
+									<li><a href="?page={{ articles.next_page_number }}&{{parameters}}"><span class="fa fa-angle-right"></span></a></li>
+								{% endif %}
+
+							</ul>  
+						</div>
 					</div>
 				</div>
 				
@@ -52,9 +75,7 @@
                             <div class="sidebar-title">
                                 <h2>التصنيفات</h2>
                             </div>
-							{% for category in categories %}
 								{% include 'partials/sidebar/category_list.html' %}
-							{% endfor %}
                         </div>
 						<!-- Popular Posts -->
                         <div class="sidebar-widget popular-posts">
@@ -70,7 +91,7 @@
 			</div>
 		</div>
 	</div>
- 
+  
 	<section class="services-section-three">
 		<div class="auto-container">
 			<!-- Sec Title -->

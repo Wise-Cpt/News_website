@@ -14,7 +14,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from business.models import Slide
 from .models import Article,Category, Contact
 from .forms import  ContactForm
-from .filters import get_filtered_articles, ArticleFilter
+from .filters import get_filtered_articles
 # Create your views here.
 
 ########## HOMEPAGE ##########
@@ -32,35 +32,37 @@ class IndexView(TemplateView):
 
 #### LIST #######
 def articles_view(request):
-    # filtered_products= get_filtered_articles(request)
-    # context = filtered_products['context']
-    # queryset = filtered_products['qs']
-    # context['articles'] = queryset.order_by('-updated')
 
-    ## SIDOU filters: 
-    # articles = Article.objects.filter(publish=True)
-    articles = Article.objects.all()
-    myfilter = ArticleFilter(request.GET, queryset=articles)
-    articles = myfilter.qs
+    filtered_products= get_filtered_articles(request)
+    context = filtered_products['context']
+    queryset = filtered_products['qs']
+    articles = queryset.order_by('-updated')
+    context['articles'] = articles
+
+    # ## SIDOU filters: 
+    # # articles = Article.objects.filter(publish=True)
+    # articles = Article.objects.all()
+    # myfilter = ArticleFilter(request.GET, queryset=articles)
+    # articles = myfilter.qs
 
     #start paginate
-    paginator = Paginator(articles, 20)
+    paginator = Paginator(articles, 2)
     page_number = request.GET.get('page')
     get_copy = request.GET.copy()
     #SIDOU edit page:
-    page_obj = Paginator.get_page(page_number)
+    page_obj = paginator.get_page(page_number)
 
-    context = {'articles': page_obj, 'myfilter': myfilter}
+    # context = {'articles': page_obj, }
 
 
-    # try:
-    #     context['articles'] = paginator.page(page)
-    # except PageNotAnInteger:
-    #     context['articles'] = paginator.page(1)
-    # except EmptyPage:
-    #     context['articles'] = paginator.page(paginator.num_pages)
-    # parameters = get_copy.pop('page', True) and get_copy.urlencode()
-    # context['parameters'] = parameters
+    try:
+        context['articles'] = paginator.page(page_number)
+    except PageNotAnInteger:
+        context['articles'] = paginator.page(1)
+    except EmptyPage:
+        context['articles'] = paginator.page(paginator.num_pages)
+    parameters = get_copy.pop('page', True) and get_copy.urlencode()
+    context['parameters'] = parameters
     return render(request, 'articles.html', context)
 
 ######### DETAIL ##########

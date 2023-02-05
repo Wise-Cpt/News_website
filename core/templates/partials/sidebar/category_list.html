@@ -3,38 +3,61 @@
 
 
 {% comment %} <div x-data="{ open: false }"> <button @click="open = ! open"> <div >  <i class="fa fa-arrow-down fa-stack-1x" ></i></div> 	</button>   {% endcomment %}
-    
+ <p>
+        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Link with href
+        </a>
+    </p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    Anim pariatur cliche reprehenderit, 
+  </div>
+</div> 
+{% comment %} 
+<ul class="root">
     {% recursetree categories %}
-        {% if not node.is_leaf_node %}
+        <li>
+           {{ node.name }}--
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    ----{{ children }}----
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+</ul>
+ {% endcomment %}
+    {% recursetree categories %}
+        {% if  node.is_leaf_node %}
             <ul class="cat-list" dir="ltr">
-                <a class="btn" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                <i class="fa fa-arrow-down fa-stack-1x" ></i>btn SIDOUUUUUU </a>
+                <a class="btn" data-toggle="collapse" href="#collapseExample-{{forloop.counter}}" role="button" aria-expanded="false" aria-controls="collapseExample-{{forloop.counter}}">
+                    <i class="fa fa-arrow-down fa-stack-1x" ></i> 
+                    toggle
+                </a>
                 <li>
                     <a href="{{node.get_absolute_url}}"> <<<< {{node.name}}</a>
                 </li>
             </ul> 
-                <li><a href="{{category.get_absolute_url}}"> PP{{category.name}}</a>
+            <li><a href="{{category.get_absolute_url}}"> PP{{category.name}}</a>
             {% comment %} <div class="collapse" id="collapseExample" > {% endcomment %}
-
-                    <ul>
-                        {% for node in category.children.all %}
-                            
-                                {{ node.category.children.count }}
-                                {% if  node.children.count > 0 %}
-
-                                        <li class="collapse" id="collapseExample"><a href="{{node.get_absolute_url}}">{{node.name}}</a>
-                                            <ul >
-                                                {% for subact in node.children.all %}
-                                                <li ><a href="{{subact.get_absolute_url}}">{{subact.name}}</a></li>
-                                                {% endfor %}
-                                            </ul>
-                                        </li>
-        
-                                {% else %}                              
-                                    <li><a href="{{node.get_absolute_url}}"> {{ node.name }}</a></li>
-                                {% endif %} 
-                        {% endfor %}
-                    </ul>
+                        <div class="collapse" id="collapseExample-{{forloop.counter}}">
+                            <ul class="collapse" >
+                                {% for node in category.children.all %}
+                                        {{ node.category.children.count }}
+                                        {% if  node.children.count > 0 %}
+                                            <li  id=""><a href="{{node.get_absolute_url}}">{{node.name}}</a>
+                                                <ul >
+                                                    {% for subact in node.children.all %}
+                                                    <li ><a href="{{subact.get_absolute_url}}">{{subact.name}}</a></li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </li>
+                                        {% else %}                              
+                                            <li><a href="{{node.get_absolute_url}}"> {{ node.name }}</a></li>
+                                        {% endif %} 
+                                {% endfor %}
+                            </ul>
+                        </div>
                 </li>
         {% endif %}
     {% endrecursetree %}
