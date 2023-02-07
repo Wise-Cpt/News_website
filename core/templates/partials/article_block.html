@@ -9,9 +9,12 @@
             <div class="lower-content">
                 <div class="post-meta">
                     <ul class="post-info clearfix">
-                        <li><a href="{{article.get_articles_of_author}}"> {{article.get_authors}} author's articles</a></li> <!-- check each author -->
+                        <li>
+                        {% for author in article.authors.all %}
+                        
+                        <a href="{{article.authors.all.0.get_articles_of_author}}"> {{article.author}}</a></li> <!-- check each author -->
+                        {% endfor %}
                         <li><a href="{{article.category.get_absolute_url}}">{{article.category}}</a></li>
-                        {{myfilter.form}}OUSAMDA
                     </ul>
                 </div>
                 <h3><a href="{{article.get_absolute_url}}">{{article.title}}</a></h3>
@@ -20,3 +23,5 @@
             </div>
         </div>
     </div>
+
+    

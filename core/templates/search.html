@@ -29,7 +29,7 @@
                 <div class="content-side col-xl-8 col-lg-8 col-md-12 col-sm-12">
                 	<div class="blog-classic padding-right">
 						<!-- News Block Three--> 
-                        {% for article in articles %}
+                        {% for article in object_list %}
 							{% include 'partials/article_block.html' %}
                         {% endfor %}
 						
@@ -41,9 +41,9 @@
 					<aside class="sidebar">
 						<!-- Search -->
                         <div class="sidebar-widget search-box">
-                        	<form method="post" action="templateshub.net">
+                        	<form method="get" action="{% url 'core:search' %}">
                                 <div class="form-group">
-                                    <input type="search" name="search-field" value="" placeholder="ابحث هنا" required>
+                                    <input type="search" name="search" value="" placeholder="ابحث هنا">
                                     <button type="submit"><span class="icon fa fa-search"></span></button>
                                 </div>
                             </form>
@@ -110,3 +110,12 @@
 	</section>
 
 {% endblock content %}
+
+
+{% comment %} 
+<h1>SEARCH RESULT</h1>
+
+    {% for article in object_list  %}
+
+        {% include 'partials/article_block.html' %}
+    {% endfor %} {% endcomment %}

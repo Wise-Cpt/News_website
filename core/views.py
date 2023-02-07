@@ -15,11 +15,20 @@ from business.models import Slide
 from .models import Article,Category, Contact
 from .forms import  ContactForm
 from .filters import get_filtered_articles
+from django.core.paginator import Paginator
+from account.models import Profile
+from django.db.models import Q
+
 # Create your views here.
 
 ########## HOMEPAGE ##########
-class IndexView(TemplateView):
+class IndexView(ListView):
+    model = Article
     template_name = "index.html"
+
+    paginate_by = 8
+
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["sliders"]           = Slide.place.slider()
@@ -33,26 +42,25 @@ class IndexView(TemplateView):
 #### LIST #######
 def articles_view(request):
 
-    filtered_products= get_filtered_articles(request)
-    context = filtered_products['context']
-    queryset = filtered_products['qs']
+    filtered_articles= get_filtered_articles(request)
+    context = filtered_articles['context']
+    queryset = filtered_articles['qs']
     articles = queryset.order_by('-updated')
     context['articles'] = articles
-
-    # ## SIDOU filters: 
-    # # articles = Article.objects.filter(publish=True)
-    # articles = Article.objects.all()
-    # myfilter = ArticleFilter(request.GET, queryset=articles)
-    # articles = myfilter.qs
+    context["homepage_article_list"]= Article.objects.filter(to_home_page=True).order_by('-updated')
+    context["homepage_card_articles"]          = Article.objects.filter(to_home_page=True).order_by('-updated') 
+    context["all_authors"] = Profile.objects.all()
 
     #start paginate
     paginator = Paginator(articles, 2)
     page_number = request.GET.get('page')
     get_copy = request.GET.copy()
     #SIDOU edit page:
-    page_obj = paginator.get_page(page_number)
+    # page_obj = paginator.get_page(page_number)
 
     # context = {'articles': page_obj, }
+    # authrs = Profile.objects.all().values_list('id')
+    # print("The authors: ========> ", authrs)
 
 
     try:
@@ -92,3 +100,28 @@ class ContactView(SuccessMessageMixin, CreateView):
         except: 
             pass
         return super().form_valid(form)
+    
+
+########## Search ##########
+
+class SearchView(ListView):
+    model = Article
+    template_name = "search.html"
+    paginate_by = 8
+
+    def get_queryset(self):  # new
+        query = self.request.GET.get("search")
+        
+        object_list = Article.objects.filter(
+            Q(title__icontains=query) | Q(apercu__icontains=query)| Q(chapo__icontains=query)| Q(quote__icontains=query)|
+            Q(category__name__icontains=query) | Q(authors__username__icontains=query) | Q(texte_image__icontains=query)
+        )
+        return object_list
+    
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["homepage_articles"]            = Article.objects.filter(en_avant=True).order_by('-updated')
+        context["homepage_article_list"]          = Article.objects.filter(to_home_page=True).order_by('-updated')
+        context["homepage_card_articles"]          = Article.objects.filter(to_home_page=True).order_by('-updated') 
+        return context

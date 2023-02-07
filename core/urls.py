@@ -6,6 +6,7 @@ from .views import (
     IndexView, 
     ContactView,
     articles_view,
+    SearchView
     )
 
 app_name = 'core'
@@ -15,6 +16,8 @@ urlpatterns = [
     path('articles/', articles_view, name='articles'),
     path('article/<slug:slug>', ArticleDetailView.as_view(), name='articledetail'),
     path('contact', ContactView.as_view(), name='contact'),
+    path('articles/search', SearchView.as_view(), name='search'),
+
 
 ]
 

@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 <div class="page-wrapper">
+
     <!-- Preloader --> 
     <div class="preloader"></div>
 	<section class="main-slider">
@@ -40,43 +41,82 @@
                 <div class="content-side col-xl-8 col-lg-8 col-md-12 col-sm-12">
                 	<div class="blog-classic padding-right">
 						<!-- News Block Three--> 
-                        {% for article in homepage_articles %}
+                        {% comment %} {% for article in homepage_articles %} {% endcomment %}
+                        {% for article in page_obj %}
 							{% include 'partials/article_block.html' %}
                         {% endfor %}
 					</div>
 					
+
+				{% comment %} ################### {% endcomment %}
+
+			{% comment %} Paginator {% endcomment %}
+			{% comment %} <div class="pagination">
+				<ul class="styled-pagination">
+					{% if page_obj.has_previous %}
+						<li><a href="?page={{ page_obj.previous_page_number }}&{{parameters}}"><span class="fa fa-angle-left"></span></a></li>
+					{% endif %}
+
+					{% for article in page_obj %}
 					
-					{% comment %} <ul class="styled-pagination">
-						{% if page_obj.has_previous %}
-							<li><a href="?page={{ page_obj.previous_page_number }}"><span class="fa fa-angle-left"></span></a></li>
-						{% endif %}
+						<li 
+							{% if article.number is page_obj.number %}
+							class="active"
+							{% endif %}
+						>
+						<a href="?page={{ article.number }}&{{parameters}}" > {{ article.number }} </a>
+						</li>
+					{% endfor %}
+					{% if articles.has_next %}
+						<!-- <a href="?page={{ articles.next_page_number }}">next</a> -->
+						<li><a href="?page={{ page_obj.next_page_number }}&{{parameters}}"><span class="fa fa-angle-right"></span></a></li>
+					{% endif %}
 
-						{% for article in page_obj.paginator %}
-						
-							<li 
-								{% if article.number is page_obj.number %}
-								class="active"
-								{% endif %}
-							>
-							<a href="?page={{ article.number }}" > {{ article.number }} </a>
-							</li>
-						{% endfor %}
-						{% if page_obj.has_next %}
-							<!-- <a href="?page={{ page_obj.next_page_number }}">next</a> -->
-							<li><a href="?page={{ page_obj.next_page_number }}"><span class="fa fa-angle-right"></span></a></li>
-						{% endif %}
+				</ul>  
+			</div> {% endcomment %}
+			{% comment %} End Paginator {% endcomment %}
 
-					</ul>                 {% endcomment %}
-				</div>
+
+	{% if is_paginated %}
+	<div class="pagination">
+		<ul class="styled-pagination">
+			{% if page_obj.has_previous %}
+				<li><a href="?page={{ page_obj.previous_page_number }}"><span class="fa fa-angle-left"></span></a></li>
+			{% comment %} {% else %}
+				<li class="disabled"><span>&laquo;</span></li> {% endcomment %}
+			{% endif %}
+			
+			{% for i in paginator.page_range %}
+				{% if page_obj.number == i %}
+					{% comment %} <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+				{% else %} {% endcomment %}
+					<li><a href="?page={{ i }}&{{parameters}}">{{ i }}</a></li>
+				{% endif %}
+			
+			{% endfor %}
+			{% if page_obj.has_next %}
+				<li><a href="?page={{ page_obj.next_page_number }}"><span class="fa fa-angle-right"></span></a></li>
+			{% comment %} {% else %}
+				<li class="disabled"><span>&raqudfo;</span></li> {% endcomment %}
+			{% endif %}
+		</ul>
+	</div>
+
+	{% endif %}
+
+
+
+		</div>
 				
 				<!--Sidebar Side-->
 				<div class="sidebar-side col-xl-4 col-lg-4 col-md-12 col-sm-12">
 					<aside class="sidebar">
 						<!-- Search -->
                         <div class="sidebar-widget search-box">
-                        	<form method="post" action="templateshub.net">
+                        	<form action="{% url 'core:search' %}" method="GET">
+							{% comment %} {% csrf_token %} {% endcomment %}
                                 <div class="form-group">
-                                    <input type="search" name="search-field" value="" placeholder="ابحث هنا" required>
+                                    <input type="search" name="search" value="" placeholder="ابحث هنا" required>
                                     <button type="submit"><span class="icon fa fa-search"></span></button>
                                 </div>
                             </form>
@@ -114,16 +154,20 @@
 			</div>
 		</div>
 	</div>
+
+			
+
+
 	<section class="services-section-three">
-		<div class="auto-container">
+		<div class="auto-container ">
 			<!-- Sec Title -->
 			<div class="sec-title centered">
-				<h2>اخر الاخبار</h2>
+				<h2>اقرء أيضًا</h2>
 			</div>
-			<div class="row clearfix">
-				{% for article in homepage_card_articles %}	
-					{% include 'partials/article_card.html' %}
-				{% endfor %}
+			<div class="row clearfix owl-carousel">
+					{% for article in homepage_card_articles %}	
+						{% include 'partials/article_card.html' %}
+					{% endfor %}
 			</div>
 		</div>
 	</section>
@@ -132,3 +176,20 @@
 <!--End pagewrapper-->
 
 {% endblock content %}
+
+{% block script %}
+
+<script>
+var owl = $('.owl-carousel');
+owl.owlCarousel({
+    items:1, 
+  // items change number for slider display on desktop
+  
+	loop:true,
+    margin:10,
+    autoplay:true,
+    autoplayTimeout:1000,
+    autoplayHoverPause:true
+});
+</script>
+{% endblock script %}

@@ -1,9 +1,9 @@
 from .models import Article, Category
-import django_filters
+from account.models import Profile
+# import django_filters
 
 def is_valid_queryparam(param):
     if param != '' and param != None:
-        print('THE PARA1M', param)
         return True
 
 def get_filtered_articles(request):
@@ -18,9 +18,9 @@ def get_filtered_articles(request):
     if is_valid_queryparam(category_id):
         cat = Category.objects.get(id=category_id)
         context["selected_category"] = cat
-        # print("This is the result of the query: ---> ",context["selected_category"] )
+
+
         # context["article_categories"] = Article.objects.get(id = category_id)
-        # print("This is the result of the query: ---> ",context["article_categories"] )
 
         children = cat.get_children()
         qs = qs.filter(category__in=cat.get_descendants(include_self=True), actif=True)
@@ -28,7 +28,16 @@ def get_filtered_articles(request):
             context["article_categories"] = children
         else : 
             context["article_categories"] =  cat.get_siblings(include_self=True)
+
+        
+    if  is_valid_queryparam(author_id):
+        qs = qs.filter(authors__id=author_id)
+        context["selected_authors"] = Profile.objects.filter( actif=True)
+
+
     return {'qs': qs.distinct(), 'context': context}
+
+
 
 
 

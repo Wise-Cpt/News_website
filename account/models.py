@@ -19,7 +19,8 @@ class Profile(models.Model):
     phone       = models.CharField(max_length=20 , blank=True)
     address     = models.CharField(max_length=250 , blank=True)
     role        = models.ForeignKey(Role, on_delete=models.SET_NULL, null=True, blank=True)
-    
+    actif       = models.BooleanField(default=True, verbose_name="actif")
+
     def __str__(self):
         # return f'{self.username}'
         return str(self.username)

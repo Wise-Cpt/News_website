@@ -4,7 +4,7 @@
         <div class="author-thumb"><a href="{{article.get_absolute_url}}">{% if article.first_image %}<img class="height:40px; width:auto;" src="{{article.first_image}}" alt="" />{% else %}<img class="height:40px; width:auto;"  src="{% static 'images/background/5.jpg' %}" alt="">  {% endif %}</a></div>
         <div class="comment-inner">
             <div class="comment-info clearfix"><a href="{{article.get_absolute_url}}">{{article.title}}</a></div>
-            <div class="text">{{article.aperçu}}</div>
+            <div class="text">{{article.apercu}}</div>
             <ul class="post-info">
                 <li>{{article.date|date:'Y-m-d'}}</li>
                 <li><a href="{{article.get_absolute_url}}"> اقرأ المزيد </a></li>

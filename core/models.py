@@ -57,6 +57,9 @@ class Category(AbstractSEO, MPTTModel):
     def get_absolute_url(self):
         return f"/articles/?category={self.id}"
     
+    # def get_articles_of_author(self):
+    #     return f"/articles/?author={self.id}"
+    
     class Meta:
         verbose_name = 'Catégorie'
         verbose_name_plural = '- Catégories'
@@ -97,13 +100,13 @@ class Hiring(models.Model):
 class Article(AbstractSEO, models.Model):
     title         = models.CharField( max_length=150, verbose_name='Titre')
     slug          = models.SlugField()
-    aperçu        = models.CharField( max_length=300, verbose_name='aperçu', blank=True, null=True)
+    apercu        = models.CharField( max_length=300, verbose_name='apercu', blank=True, null=True)
     chapo         = models.CharField( max_length=300, verbose_name='chapô ',blank=True, null=True)
     quote         = models.CharField( max_length=300, verbose_name='phrase mise en avant ', blank=True, null=True)
     texte_top     = tinymce_models.HTMLField(verbose_name='texte haut', blank=True, null=True)
     texte_image  = tinymce_models.HTMLField(verbose_name='texte deux colonnes', blank=True, null=True)
     texte_bottom  = tinymce_models.HTMLField(verbose_name='texte bas', blank=True, null=True)
-    authors        = models.ManyToManyField(Profile, verbose_name="Auteur", related_name="autors", blank=True)
+    authors       = models.ManyToManyField(Profile, verbose_name="Auteur", related_name="articles_of_authors", blank=True)
     category      = models.ForeignKey(Category,on_delete=models.CASCADE,  verbose_name="categorie de l'article", related_name="category_of_article")
     issue         = models.ForeignKey(Issue,on_delete=models.CASCADE,   related_name="issue_of_article", blank=True, null=True)
     publish       = models.BooleanField(default=True, verbose_name='Publier',)
