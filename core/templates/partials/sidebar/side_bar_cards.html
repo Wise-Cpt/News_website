@@ -2,7 +2,7 @@
 
 
 <article class="post">
-    <figure class="post-thumb"><a href="{{article.get_absolute_url}}">{% if article.first_image %}<img  src="{{article.first_image}}" alt="" />{% else %}<img src="{% static 'images/background/5.jpg' %}" alt="">  {% endif %}</a></figure>
+    <figure class="post-thumb"><a href="{{article.get_absolute_url}}">{% if article.first_image %}<img  src="{{article.first_image}}" alt="" />{% else %}<img src="{% static 'images/background/5.png' %}" alt="">  {% endif %}</a></figure>
     <div class="text"><a href="{{article.get_absolute_url}}">{{article.title}} EMEME     </a></div>
     <div class="post-info">{{article.date|date:'Y-m-d'}}</div>
 </article>

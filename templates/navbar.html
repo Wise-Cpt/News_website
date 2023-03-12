@@ -9,19 +9,26 @@
                     <div class="text">
                         {% if business.linkedin %}
                             <a href="{{business.linkedin}}"><img class="social-img" src="{% static 'images/icons/icons-linkedin-circled.svg' %}" alt=""></a>
-                        {% elif business.facebook %}
+                        {% endif %}
+                        {% if business.facebook %}
                             <a href="{{business.facebook}}"><img class="social-img" src="{% static 'images/icons/icon-facebook-white.svg' %}" alt=""></a>
-                        {% elif business.insta %}
+                        {% endif %}
+                        {% if business.insta %}
                             <a href="{{business.insta}}"><img class="social-img" src="{% static 'images/icons/icon-instagram-white.svg' %}" alt=""></a>
-                        {% elif business.snapchat %}
+                        {% endif %}
+                        {% if business.snapchat %}
                             <a href="{{business.snapchat}}"><img class="social-img" src="{% static 'images/icons/icons-snapchat.svg' %}" alt=""></a>
-                        {% elif business.tiktok %}
+                        {% endif %}
+                        {% if business.tiktok %}
                             <a href="{{business.tiktok}}"><img class="social-img" src="{% static 'images/icons/icons-tiktok.svg' %}" alt=""></a>
-                        {% elif business.twitter %}
+                        {% endif %}
+                        {% if business.twitter %}
                             <a href="{{business.twitter}}"><img class="social-img" src="{% static 'images/icons/icon-twitter-white.svg' %}" alt=""></a>
-                        {% elif business.pinterest %}
+                        {% endif %}
+                        {% if business.pinterest %}
                             <a href="{{business.pinterest}}"><img class="social-img" src="{% static 'images/icons/icon-pinterest-white.svg' %}" alt=""></a>
-                        {% elif business.youtube %}
+                        {% endif %}
+                        {% if business.youtube %}
                             <a href="{{business.youtube}}"><img class="social-img" src="{% static 'images/icons/icon-youtube-white.svg' %}" alt=""></a>
                         {% endif %}
                     </div>

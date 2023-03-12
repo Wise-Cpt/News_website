@@ -9,7 +9,7 @@
 {% endblock extra_seo %}
 {% block content %}
     <!--Page Title-->
-    <section class="page-title" style="background-image:url(images/background/5.jpg); transform: scaleX(-1);">
+    <section class="page-title" style="background-image:url(images/background/5.png); transform: scaleX(-1);">
     	<div class="auto-container">
 			{% if category.parent %}
         	<h2>{{category.parent}}</h2>
@@ -57,7 +57,7 @@
                         </div>
 						<!-- Popular Posts -->
                         <div class="sidebar-widget popular-posts">
-                            <div class="sidebar-title"><h2>اخر الاخب sidoudoudouار</h2></div>
+                            <div class="sidebar-title"><h2>اخر الاخبار</h2></div>
                             {% for article in homepage_article_list %}
 								{% include 'partials/sidebar/side_bar_cards.html' %}
                             {% endfor %}

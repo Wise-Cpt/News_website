@@ -3,7 +3,7 @@
     <div class="news-block-three">
         <div class="inner-box">
             <div class="image-box">
-                <figure class="image"><a href="{{article.get_absolute_url}}">{% if article.first_image %}<img class="default-img" src="{{article.first_image}}" alt="" />{% else %}<img src="{% static 'images/background/5.jpg' %}" alt="">  {% endif %}</a></figure>
+                <figure class="image"><a href="{{article.get_absolute_url}}">{% if article.first_image %}<img class="default-img" src="{{article.first_image}}" alt="" />{% else %}<img src="{% static 'images/background/5.png' %}" alt="">  {% endif %}</a></figure>
                 <span class="date">{{article.date|date:'Y-m-d'}}</span>
             </div>
             <div class="lower-content">

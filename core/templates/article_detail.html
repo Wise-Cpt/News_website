@@ -11,7 +11,7 @@
 {% block content %}
 
     <!--Page Title-->
-    <section class="page-title" style="background-image:url(images/background/5.jpg); transform: scaleX(-1);">
+    <section class="page-title" style="background-image:url({% static 'images/background/5.png' %}); transform: scaleX(-1);">
     	<div class="auto-container">
         	<h2>تفاصيل المقال</h2>
             <ul class="page-breadcrumb" dir="rtl">
@@ -32,7 +32,7 @@
                         <h5>{{article.chapo}}</h5>
 						<div class="inner-box my-3">
 							<div class="image-box">
-                                <figure class="image"><a href="{{article.get_absolute_url}}">{% if article.first_image %}<img class="default-img" src="{{article.first_image}}" alt="" />{% else %}<img src="{% static 'images/background/5.jpg' %}" alt="">  {% endif %}</a></figure>
+                                <figure class="image"><a href="{{article.get_absolute_url}}">{% if article.first_image %}<img class="default-img" src="{{article.first_image}}" alt="" />{% else %}<img src="{% static 'images/background/5.png' %}" alt="">  {% endif %}</a></figure>
                                 <span class="date">{{article.date|date:'Y-m-d'}}</span>
                             </div>
                             <div class="lower-content">
@@ -49,7 +49,7 @@
 										<h4>&quot;{{article.quote}}&quot;</h4>
 										<div class="row clearfix">
 											<div class="col-md-6 col-sm-6 col-xs-12">
-                                                <figure class="image"><a href="{{article.get_absolute_url}}">{% if article.first_image %}<img class="default-img" src="{{article.first_image}}" alt="" />{% else %}<img src="{% static 'images/background/5.jpg' %}" alt="">  {% endif %}</a></figure>
+                                                <figure class="image"><a href="{{article.get_absolute_url}}">{% if article.images.all.count > 2 %}<img class="default-img" src="{{article.first_image}}" alt="" />{% else %}<img src="{% static 'images/background/5.png' %}" alt="">  {% endif %}</a></figure>
 											</div>
 											<div class="col-md-6 col-sm-6 col-xs-12">
                                                 {{article.texte_image|safe}}
