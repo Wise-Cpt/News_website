@@ -1,82 +1,75 @@
 {% load static %}
 {% load mptt_tags %}
 
+<style>
+    .cat-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-btn {
+      position: absolute;
+      left: 0;
+      top: 0;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .sub {
+      margin-left: 10px;
+      display: none;
+    }
+
+    .sub li {
+      margin-bottom: 5px;
+    }
+  </style>
+
+  <div class="sidebar">
     {% recursetree categories %}
-
-    <ul class="cat-list" dir="ltr">
-        {% comment %} 1st Gen {% endcomment %}
+        <ul class="cat-list" dir="ltr">
         {% if not node.is_leaf_node %}
-        <a class="btn btn-primary" data-toggle="collapse" href="#colll-{{node.id}}" role="button" aria-expanded="false" aria-controls="colll-{{node.id}}">
-            <i class="fa fa-arrow-down fa-stack-1x" ></i> 
-            toggle
-        </a>
-        <li>
-            <a href="{{node.get_absolute_url}}"> <<<< {{node.name}}</a>
+        <li class="dropdown"><a href="{{node.get_absolute_url}}">{{node.name}}</a>
+            <div class="dropdown-btn" ><span class="fa fa-angle-left"></span></div>
+            <ul class="sub">
+                {% for sub in node.children.all %}
+                    {% if not sub.is_leaf_node %}
+                    <li class="dropdown"><a href="{{node.get_absolute_url}}">{{sub.name}}</a>
+                        <div class="dropdown-btn" ><span class="fa fa-angle-left"></span></div>
+                        <ul class="sub">
+                            {% for subcat in sub.children.all %}
+                                {% if not subcat.is_leaf_node %}
+                                    <li><a href="{{node.get_absolute_url}}">{{subcat.name}}</a></li>
+                                    {% else %}
+                                    <li><a href="{{node.get_absolute_url}}">{{subcat.name}}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li><a href="{{node.get_absolute_url}}">{{sub.name}}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         </li>
         {% else %}
-        <li>
-            <a href="{{node.get_absolute_url}}"> <<<< {{node.name}}</a>
-        </li>
+        <li><a href="{{node.get_absolute_url}}">{{node.name}}</a></li>
         {% endif %}
-        
-    </ul> 
-    <div class="collapse" id="colll-{{node.id}}">
-        <ul>
-            
-            {% for node in node.children.all %}
-            {% comment %} 2nd Gen {% endcomment %}
-            {{ node.category.children.count }}
-            {% if  node.children.count > 0 %}
-            
-                <a class="btn btn-primary" data-toggle="collapse" href="#colll-{{node.id}}" role="button" aria-expanded="false" aria-controls="colll-{{node.id}}">
-                    <i class="fa fa-arrow-down fa-stack-1x" ></i> 
-                    Grand Parent child
-                </a>
-                <li>
-                    <a href="{{node.get_absolute_url}}">{{node.name}}</a>
-                    <ul>
-                        {% comment %} <li>
-                            <a href="{{node.get_absolute_url}}">{{node.name}}--</a> 
-                            <a class="btn btn-primary" data-toggle="collapse" href="#colll-{{node.id}}" role="button" aria-expanded="false" aria-controls="colll-{{node.id}}">
-                                <i class="fa fa-arrow-down fa-stack-1x" ></i> 
-                                    Parent child
-                            </a>
-                        </li> {% endcomment %}
-                        <div class="collapse" id="colll-{{node.id}}">
-                            {% for subcat in node.children.all %}
-                            {% comment %} 3rd Gen  {% endcomment %}
-                                <li>
-                                    <a href="{{subcat.get_absolute_url}}">{{subcat.name}}+++++</a> 
-                                </li>
-                                {{ subcat.category.children.count }}
-                                {% if  subcat.children.count > 0 %}
-                                    <a class="btn btn-primary" data-toggle="collapse" href="#colll-{{subcat.id}}" role="button" aria-expanded="false" aria-controls="colll-{{subcat.id}}">
-                                        <i class="fa fa-arrow-down fa-stack-1x" ></i> 
-                                        Grand nefew
-                                    </a>
-                                    <li>
-                                        <ul>
-                                            <div class="collapse" id="colll-{{subcat.id}}">
-                                                {% for small_subcat in subcat.children.all %}
-                                                {% comment %} 4th Gen {% endcomment %}
-                                                    <li>
-                                                        <a href="{{small_subcat.get_absolute_url}}">{{small_subcat.name}}==========</a> 
-                                                    </li>
-                                                {% endfor %}
-                                            </div>
-                                        </ul>
-                                    </li>
-                                {% endif %} 
-                            {% endfor %}
-                        </div>
-                    </ul>
-                </li>
-            {% else %}                              
-                <li><a href="{{node.get_absolute_url}}"> {{ node.name }} </a></li>
-            {% endif %}
-
-            {% endfor %}
-        </ul> 
-    </div>
+        </ul>
     {% endrecursetree %}
+  </div>
+
+  <script>
+    var dropdownBtns = document.querySelectorAll('.dropdown-btn');
+    dropdownBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var sub = this.parentElement.querySelector('.sub');
+        sub.style.display = sub.style.display === 'none' ? 'block' : 'none';
+      });
+    });
+  </script>

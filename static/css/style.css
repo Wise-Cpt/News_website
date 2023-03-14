@@ -259,7 +259,7 @@ ul,li{
 }
 
 .btn-style-one:hover{
-	color: #1B2845;
+	color: #E6AF2E;
 }
 
 /* Btn Style Two */
@@ -1561,7 +1561,7 @@ img{
 	height: 100%;
 	max-height: 100%;
 	overflow-y: auto;
-	background: #202020;
+	background: #1B2845;
 	padding: 0px 0px;
 	z-index: 5;
 	opacity: 0;
@@ -8499,4 +8499,24 @@ aside {
 
 .logo-img{ 
 	height:70px;
+}
+@media (max-width: 441px) {
+	.logo-img{ 
+		height:50px;
+	}
+	.main-header .header-upper {
+		background-color: #1B2845;
+	}
+	.main-header .header-top{
+		display: none;
+	}
+	.mCS_img_loaded{
+	    margin-right: -65px;
+	}
+}
+
+@media only screen and (max-width: 1023px) {
+	.main-header .header-upper {
+    background-color: #1B2845 !important;
+}
 }

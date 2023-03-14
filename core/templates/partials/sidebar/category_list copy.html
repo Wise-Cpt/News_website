@@ -1,0 +1,82 @@
+{% load static %}
+{% load mptt_tags %}
+
+
+    {% recursetree categories %}
+
+    <ul class="cat-list" dir="ltr">
+        {% comment %} 1st Gen {% endcomment %}
+        {% if not node.is_leaf_node %}
+        <a class="btn btn-primary" data-toggle="collapse" href="#colll-{{node.id}}" role="button" aria-expanded="false" aria-controls="colll-{{node.id}}">
+            <i class="fa fa-arrow-down fa-stack-1x" ></i> 
+            toggle
+        </a>
+        <li>
+            <a href="{{node.get_absolute_url}}"> <<<< {{node.name}}</a>
+        </li>
+        {% else %}
+        <li>
+            <a href="{{node.get_absolute_url}}"> <<<< {{node.name}}</a>
+        </li>
+        {% endif %}
+        
+    </ul> 
+    <div class="collapse" id="colll-{{node.id}}">
+        <ul>
+            
+            {% for node in node.children.all %}
+            {% comment %} 2nd Gen {% endcomment %}
+            {{ node.category.children.count }}
+            {% if  node.children.count > 0 %}
+            
+                <a class="btn btn-primary" data-toggle="collapse" href="#colll-{{node.id}}" role="button" aria-expanded="false" aria-controls="colll-{{node.id}}">
+                    <i class="fa fa-arrow-down fa-stack-1x" ></i> 
+                    Grand Parent child
+                </a>
+                <li>
+                    <a href="{{node.get_absolute_url}}">{{node.name}}</a>
+                    <ul>
+                        {% comment %} <li>
+                            <a href="{{node.get_absolute_url}}">{{node.name}}--</a> 
+                            <a class="btn btn-primary" data-toggle="collapse" href="#colll-{{node.id}}" role="button" aria-expanded="false" aria-controls="colll-{{node.id}}">
+                                <i class="fa fa-arrow-down fa-stack-1x" ></i> 
+                                    Parent child
+                            </a>
+                        </li> {% endcomment %}
+                        <div class="collapse" id="colll-{{node.id}}">
+                            {% for subcat in node.children.all %}
+                            {% comment %} 3rd Gen  {% endcomment %}
+                                <li>
+                                    <a href="{{subcat.get_absolute_url}}">{{subcat.name}}+++++</a> 
+                                </li>
+                                {{ subcat.category.children.count }}
+                                {% if  subcat.children.count > 0 %}
+                                    <a class="btn btn-primary" data-toggle="collapse" href="#colll-{{subcat.id}}" role="button" aria-expanded="false" aria-controls="colll-{{subcat.id}}">
+                                        <i class="fa fa-arrow-down fa-stack-1x" ></i> 
+                                        Grand nefew
+                                    </a>
+                                    <li>
+                                        <ul>
+                                            <div class="collapse" id="colll-{{subcat.id}}">
+                                                {% for small_subcat in subcat.children.all %}
+                                                {% comment %} 4th Gen {% endcomment %}
+                                                    <li>
+                                                        <a href="{{small_subcat.get_absolute_url}}">{{small_subcat.name}}==========</a> 
+                                                    </li>
+                                                {% endfor %}
+                                            </div>
+                                        </ul>
+                                    </li>
+                                {% endif %} 
+                            {% endfor %}
+                        </div>
+                    </ul>
+                </li>
+            {% else %}                              
+                <li><a href="{{node.get_absolute_url}}"> {{ node.name }} </a></li>
+            {% endif %}
+
+            {% endfor %}
+        </ul> 
+    </div>
+    {% endrecursetree %}

@@ -153,6 +153,7 @@ class ArticleImage(models.Model):
     article             = models.ForeignKey(Article, related_name="photos", on_delete=models.CASCADE, null=True, blank = True)
     title               = models.CharField(max_length=254,verbose_name="Titre de l'image'")
     image               = models.ImageField(verbose_name="lmage de l'article", blank=True, null=True)
+    side                = models.BooleanField(verbose_name='side picture ', default=False)
     description         = models.TextField(blank=True, null=True)
     actif               = models.BooleanField(verbose_name='actif', default=True)
     card                = models.BooleanField(verbose_name="Card image ", default=True)

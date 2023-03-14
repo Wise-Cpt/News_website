@@ -4,16 +4,13 @@
         <div class="inner-box">
             <div class="image-box">
                 <figure class="image"><a href="{{article.get_absolute_url}}">{% if article.first_image %}<img class="default-img" src="{{article.first_image}}" alt="" />{% else %}<img src="{% static 'images/background/5.png' %}" alt="">  {% endif %}</a></figure>
-                <span class="date">{{article.date|date:'Y-m-d'}}</span>
+                {% comment %} <span class="date">{{article.date|date:'Y-m-d'}}</span> {% endcomment %}
             </div>
             <div class="lower-content">
                 <div class="post-meta">
                     <ul class="post-info clearfix">
                         <li>
-                        {% for author in article.authors.all %}
-                        
-                        <a href="{{article.authors.all.0.get_articles_of_author}}"> {{article.author}}</a></li> <!-- check each author -->
-                        {% endfor %}
+                        <a href=""> {{article.get_authors}}</a></li> 
                         <li><a href="{{article.category.get_absolute_url}}">{{article.category}}</a></li>
                     </ul>
                 </div>
