@@ -649,7 +649,7 @@ img{
 	text-align:center;
 	z-index:100;
 	cursor:pointer;
-	background:#1b1a1c;
+	background:#1B2845;
 	display:none;
 	border-radius: 5px;
 	-webkit-transition:all 300ms ease;
@@ -2779,7 +2779,16 @@ img{
 .service-block .inner-box .lower-content .read-more:hover{
 	color:#ffffff;
 }
-
+.read-more {
+    position: relative;
+    color: #1B2845;
+    font-size: 16px;
+    margin-top: 14px;
+    display: inline-block;
+}
+.read-more:hover {
+    color: #E6AF2E;
+}
 /*** 
 
 ====================================================================
@@ -3761,7 +3770,6 @@ img{
 	font-size:16px;
 	margin-top:14px;
 	display:inline-block;
-	font-family: 'Rufina', serif;
 	transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
@@ -5550,8 +5558,8 @@ img{
 .services-list li.active a,
 .services-list li:hover a{
 	color:#1B2845;
-	border-color:#E6AF2E;
-	background-color:#E6AF2E;
+	border-color:#E6AF2E ;
+	background-color:#E6AF2E ;
 }
 
 /* Contact Widget */
@@ -6276,7 +6284,11 @@ img{
 	border-color:#1B2845;
 	background-color:#1B2845;
 }
-
+.paginatorbtn{ 
+	color:#ffffff !important;
+	border-color:#1B2845 !important;
+	background-color:#1B2845 !important;
+}
 /*** 
 
 ====================================================================

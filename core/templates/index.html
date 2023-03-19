@@ -21,7 +21,7 @@
 								{% if  slide.title %} <h2>{{slide.title}}</h2>{% endif %}
 								{% comment %} {% if  slide.sub_title %}<div class="text" dir="rtl" >{{slide.sub_title}}</div>{% endif %} {% endcomment %}
 								<div class="btns-box">
-									<a href="{{slide.url}}" class="theme-btn btn-style-one"><span class="txt"> اقرأ المزيد </span></a>
+									{% comment %} <a href="{{slide.url}}" class="theme-btn btn-style-one"><span class="txt"> اقرأ المزيد </span></a> {% endcomment %}
 								</div>
 							</div>
 						</div>
@@ -89,7 +89,7 @@
 				{% if page_obj.number == i %}
 					{% comment %} <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
 				{% else %} {% endcomment %}
-					<li><a href="?page={{ i }}&{{parameters}}">{{ i }}</a></li>
+					<li><a href="?page={{ i }}&{{parameters}}" class="paginatorbtn">{{ i }}</a></li>
 				{% endif %}
 			
 			{% endfor %}

@@ -29,11 +29,11 @@
         <div class="lower-content">
             <ul class="post-meta">
                 <li><span>{{article.get_authors}}</span></li>
-                <li> {{article}}</li>
             </ul>
             <h3><a href="{{article.get_absolute_url}}">{{article.title}}</a></h3>
             <div class="text">{{article.apercu|truncatechars:10}}</div>
-           <button class="link-box theme-btn read-more"> <a href="{{article.get_absolute_url}}"  class="read-more"> اقرء المزيد </a> </button>
+             <a href="{{article.get_absolute_url}}"  class="read-more"><span><i class="fas fa-arrow-left"></i></span> اقرء المزيد </a> 
+           {% comment %} <button class="link-box theme-btn read-more"> <a href="{{article.get_absolute_url}}"  class="read-more"> اقرء المزيد </a> </button> {% endcomment %}
         </div>
     </div>
 </div>

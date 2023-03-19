@@ -16,7 +16,8 @@
                 </div>
                 <h3><a href="{{article.get_absolute_url}}">{{article.title}}</a></h3>
                 <div class="text"> {{article.apercu}}</div>
-                <div class="link-box"><a href="{{article.get_absolute_url}}" class="theme-btn read-more">اقرء المزيد</a></div>
+                <a href="{{article.get_absolute_url}}"  class="read-more"><span><i class="fas fa-arrow-left"></i></span> اقرء المزيد </a> 
+                {% comment %} <div class="link-box"><a href="{{article.get_absolute_url}}" class="theme-btn read-more">اقرء المزيد</a></div> {% endcomment %}
             </div>
         </div>
     </div>
