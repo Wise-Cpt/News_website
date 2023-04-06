@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Article, Category, ArticleImage, Contact, Hiring, Issue
+from .models import Article, Category, ArticleImage, Contact, Hiring,Tag,Job, About
 # Register your models here.
 
 class ArticleImageLinesAdmin(admin.TabularInline):
@@ -48,9 +48,11 @@ class IssueAdmin( admin.ModelAdmin):
     list_display = ('id', 'title', 'actif', 'start_date', 'end_date',)
     prepopulated_fields = {"slug": ("title",)}
 
-admin.site.register(Issue, IssueAdmin)
+# admin.site.register(Issue, IssueAdmin)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(ArticleImage,ImageAdmin)
 admin.site.register(Contact, ContactAdmin) 
 admin.site.register(Hiring) 
+admin.site.register(Job) 
+admin.site.register(About) 

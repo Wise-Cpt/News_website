@@ -9,15 +9,17 @@ from django.views.generic import (
     TemplateView,
     CreateView,
 )
+from django.utils.translation import gettext_lazy as _
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from business.models import Slide
-from .models import Article,Category, Contact
-from .forms import  ContactForm
+from .models import Article,Category, Contact,Hiring, Job, About
+from .forms import  ContactForm, HiringForm
 from .filters import get_filtered_articles
 from django.core.paginator import Paginator
 from account.models import Profile
 from django.db.models import Q
+from django.contrib import messages
 
 # Create your views here.
 
@@ -86,7 +88,13 @@ class ArticleDetailView(DetailView):
         context["categories"] = Category.objects.all()
         # context["article_categories"] = get_filtered_articles
         return context
-
+##ABOUT
+class AboutView(TemplateView):
+    template_name= "about.html"
+    def get_context_data(self, **kwargs):
+        context = super(AboutView, self).get_context_data(**kwargs)
+        context["abouts"] =About.objects.all()
+        return context
 ########## CONTACT ##########
 class ContactView(SuccessMessageMixin, CreateView):
     template_name= "contact.html"
@@ -124,4 +132,23 @@ class SearchView(ListView):
         context["homepage_articles"]            = Article.objects.filter(en_avant=True).order_by('-updated')
         context["homepage_article_list"]          = Article.objects.filter(to_home_page=True).order_by('-updated')
         context["homepage_card_articles"]          = Article.objects.filter(to_home_page=True).order_by('-updated') 
+        return context
+########## recrutements ##########
+class RecruitingView(SuccessMessageMixin, CreateView):
+    template_name= "recrutement.html"
+    form_class= HiringForm
+    model = Hiring 
+    success_message = "تم إرسال النموذج بنجاح" 
+    success_url = reverse_lazy('core:recruiting')
+
+    # def form_valid(self,request, form):
+    #     messages.success(request, _("تم إرسال النموذج بنجاح "), extra_tags="toastr")
+    #     return redirect('core:recruiting')
+
+    def form_invalid(self, form):
+        messages.error(self.request,form.errors)
+        return redirect('core:recruiting') 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["jobs"] = Job.objects.filter(is_active=True).order_by('order')
         return context

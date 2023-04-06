@@ -9,7 +9,12 @@ from account.models import Profile
 from django.contrib.auth.models import User
 
 # Create your models here.
-
+JOB_TYPE_CHOICES = (
+    ("FULLTIME", _("دوام كامل")),     
+    ("PART_TIME", _("دوام جزئي")),
+    ("INTERNSHIP", _("فترة تدريبية")),
+    ("TEMPORARY", _("مؤقت")),
+)
 class AbstractSEO(models.Model):
     meta_title       = models.CharField(max_length=70, verbose_name="titre meta", blank=True, null=True)
     meta_description = models.TextField(verbose_name="description meta", blank=True, null=True)
@@ -79,6 +84,11 @@ class Contact(models.Model):
         ordering = ('id',)
         verbose_name = 'Formulaire de contact'
         verbose_name_plural = 'Formulaire de contact'
+class Tag(models.Model):
+    name = models.CharField(max_length=50)
+    is_active =  models.BooleanField(default=True)
+    created         = models.DateTimeField(verbose_name='Date de Création', auto_now_add=True)
+    updated         = models.DateTimeField(verbose_name='Date de dernière mise à jour', auto_now=True)
 
 class Hiring(models.Model):
     name        = models.CharField(max_length=150, verbose_name='Nom')
@@ -96,7 +106,40 @@ class Hiring(models.Model):
     def __str__(self):
         return str(self.email)
   
+class Job(models.Model):
+    title       = models.CharField( verbose_name=_("job title"), max_length=150)
+    slug        = models.SlugField()
+    description = tinymce_models.HTMLField(verbose_name='experience', null=True, blank=True)
+    type        = models.CharField(choices=JOB_TYPE_CHOICES, default="TEMPORARY",max_length= 20, verbose_name=_("Job type")) 
+    tags        = models.ManyToManyField(Tag, verbose_name=_("tags"), null=True, blank=True)
+    budget      = models.DecimalField( max_digits=10, decimal_places=2, null=True, blank=True)
+    duration    = models.IntegerField(verbose_name=_("Number of days"), null=True, blank=True)
+    expiration  = models.DateField(blank=True, null=True)
+    deadline    = models.DateField(blank=True, null=True)
+    is_active   =  models.BooleanField(default=False)
+    order       = models.IntegerField(verbose_name='ordre', null=True, blank=True)
 
+    class Meta:
+        verbose_name = _("Annonce")
+        verbose_name_plural = _("Annonce")
+    
+    def __str__(self):
+        return str(self.title)
+    
+class About(models.Model):
+    name            = models.CharField(verbose_name="Nom de l'entreprise", max_length=100,  blank=True, null=True)
+    image_high      = models.ImageField(upload_to='images/', verbose_name='image_1', blank=True, null=True)
+    image_low       = models.ImageField(upload_to='images/', verbose_name="image_2", blank=True, null=True)
+    title           = models.CharField(verbose_name="Titre", max_length=50, blank=True) 
+    about_high      = tinymce_models.HTMLField(verbose_name='Text a propos', blank=True, null=True)
+    about_low       = tinymce_models.HTMLField(verbose_name='Page a propos 2', blank=True, null=True)
+ 
+    def __str__(self):
+        return str(self.name)
+    class Meta:
+        verbose_name = 'about'
+        verbose_name_plural = 'abouts'
+        
 class Article(AbstractSEO, models.Model):
     title         = models.CharField( max_length=150, verbose_name='Titre')
     slug          = models.SlugField()

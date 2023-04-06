@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+  
+    <!--Page Title-->
+	<section class="page-title" style="background-image:url({% static 'images/background/5.png' %}); transform: scaleX(-1);">
+		<div class="auto-container">
+			<h2> انضم إلينا</h2>
+			<ul class="page-breadcrumb" dir="rtl">
+				<li class="page-breadcrumb" dir="rtl"> انضم إلينا </li>
+				<li dir="rtl"><a href="{% url 'core:index' %}">الرئيسية</a></li>
+			</ul>
+		</div>
+	</section>
+    <!--End Page Title-->  
+	
+    	<!-- Contact Form Section -->
+	<section class="contact-form-section" style="background-image:url('images/background/contact.jpg' %})">
+		<div class="auto-container">
+			<!-- Sec Title -->
+			{% include 'snippets/message.html' %}
+			<div class="sec-title">
+				<h2>{% trans 'انضم إلى فريقنا' %}</h2>
+				<div class="text"> <p style="color:#242424;"> {% trans 'نحن نبحث دائمًا عن إضافة أعضاء جدد إلى فريقنا ، يرجى تقديم معلوماتك أدناه وسنتصل بك.' %}  </p></div>
+			</div>
+
+			<div class="row clearfix">
+				
+				<!-- Form Column -->
+				<div class="form-column col-lg-6 col-md-12 col-sm-12">
+					<div class="inner-column">
+						
+						<!-- Contact Form -->
+						<div class="contact-form">
+								
+							<!--Contact Form-->
+							<form method="post" action="{% url 'core:recruiting' %}" enctype='multipart/form-data' >
+								{% csrf_token %}
+								<div class="row clearfix">
+									<div class="form-group col-lg-12 col-md-6 col-sm-12">
+										<input type="text" name="name" id="id_name" placeholder="{% trans 'الإسم واللقب*' %}" required>
+									</div>
+									
+									<div class="form-group col-lg-6 col-md-6 col-sm-12">
+										<input type="tel" name="phone" id="id_phone"  placeholder="{% trans 'رقم الهاتف +213*' %}" pattern="^(?:0|\(?\+213\)?\s?|00213\s?)[1-79](?:[\.\-\s]?\d\d){4}$" required>
+									</div>
+									<div class="form-group col-lg-6 col-md-6 col-sm-12">
+										<input type="text" name="email" id="id_email"  placeholder="{% trans 'بريد إلكتروني *' %}" >
+									</div>
+									{% comment %} <div class="form-group col-lg-6 col-md-6 col-sm-12">
+										<input type="date" name="birth_date" id="id_birth_date"   placeholder="{% trans ' تاريخ الميلاد *' %}" required>
+									</div> {% endcomment %}
+                                    {% comment %} <div class="form-group col-lg-6 col-md-6 col-sm-12">
+										<input type="text" name="birth_place" id="id_birth_place"  placeholder="{% trans "Lieu de naissance *" %}" required>
+									</div> {% endcomment %}
+									<div class="form-group col-lg-12 col-md-12 col-sm-12">
+										<textarea name="message" id="id_message"  placeholder="{% trans ' الخبرة' %}"></textarea>
+									</div>
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                        <input type="file" name="cv_file" id="id_cv_file"  placeholder="{% trans ' تحميل السيرة الذاتية *' %}">
+									</div>
+									<input type="text" name="username" id="username" hidden="true" >
+									
+									<div class="form-group col-lg-12 col-md-12 col-sm-12">
+										<button class="theme-btn btn-style-one" type="submit" ><span class="txt"  style="color:#fff;">{% trans 'إرسال' %}</span></button>
+									</div>
+									
+								</div>
+							</form>
+						</div>
+					
+					</div>
+				</div>
+				   
+				<!-- Info Column -->
+				<div class="info-column col-lg-6 col-md-12 col-sm-12">
+					<div class="inner-column">
+					{% for job in jobs %}
+						<!-- Contact Info List -->
+						<ul class="contact-info-list">
+							<li> <h1 style="color:#000;">{{job.title}}</h1> </li>
+							<li><strong> نوع الوظيفة </strong>{{job.get_type_display}}  &nbsp; <strong>ميزانية </strong>{{job.budget}} دج</li>
+							<li> <strong>مدة </strong>{{job.duration}} يوم &nbsp; <strong>موعد التسليم </strong> {{job.deadline|date:'Y-m-d'}}</li>
+							{{job.description|safe}}
+						</ul>
+					{% endfor %}
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
+	</section>
+
+{% endblock content %}

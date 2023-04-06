@@ -18,7 +18,7 @@
 						{% endif %} 
 						<div class="auto-container">
 							<div class="content">
-								{% if  slide.title %} <h2>{{slide.title}}</h2>{% endif %}
+								{% if  slide.title %} <h2 class="title-slider">{{slide.title}}</h2>{% endif %}
 								{% comment %} {% if  slide.sub_title %}<div class="text" dir="rtl" >{{slide.sub_title}}</div>{% endif %} {% endcomment %}
 								<div class="btns-box">
 									{% comment %} <a href="{{slide.url}}" class="theme-btn btn-style-one"><span class="txt"> اقرأ المزيد </span></a> {% endcomment %}
@@ -103,8 +103,6 @@
 
 	{% endif %}
 
-
-
 		</div>
 				
 				<!--Sidebar Side-->
@@ -138,24 +136,12 @@
                             {% endfor %}
 
                         </div>
-						
-						{% comment %} <!-- Popular Tags -->
-                        <div class="sidebar-widget popular-tags">
-                            <div class="sidebar-title"><h2>Tags</h2></div>
-                            <a href="#">Interior Tips</a>
-                            <a href="#">Lighting</a>
-                            <a href="#">Designs</a>
-                        </div> {% endcomment %}
-
 					</aside>
 				</div>
 				
 			</div>
 		</div>
 	</div>
-
-			
-
 
 	<section class="services-section-three">
 		<div class="auto-container ">
@@ -164,6 +150,7 @@
 				<h2>اقرء أيضًا</h2>
 			</div>
 			<div class="row clearfix owl-carousel">
+			{% comment %} <div class="row clearfix"> {% endcomment %}
 					{% for article in homepage_card_articles %}	
 						{% include 'partials/article_card.html' %}
 					{% endfor %}

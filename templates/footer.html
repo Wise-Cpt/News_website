@@ -55,12 +55,10 @@
                                 	<h2>روابط أخرى</h2>
 									<div class="widget-content">
 										<ul class="list">
-											
+											<li><a href="{% url 'core:about'  %}"> معلومات عنا</a></li>
 											{% for category in footer_categories  %}
                                         		<li><a href="{{category.get_absolute_url}}"> {{category.name}}</a></li>
 											{% endfor %}
-												
-                                    
                                         </ul>
                                     </div>
 								</div>
