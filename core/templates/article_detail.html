@@ -47,14 +47,16 @@
 									<div class="text">
                                         {{article.texte_top|safe}}
 										<h4>&quot;{{article.quote}}&quot;</h4>
+										{% if article.images.all.count > 2 %}
 										<div class="row clearfix">
 											<div class="col-md-6 col-sm-6 col-xs-12">
-                                                <figure class="image"><a href="{{article.get_absolute_url}}">{% if article.images.all.count > 2 %}<img class="default-img" src="{{article.first_image}}" alt="" />{% else %}<img src="{% static 'images/background/5.png' %}" alt="">  {% endif %}</a></figure>
+                                                <figure class="image"><a href="{{article.get_absolute_url}}">{% if article.images.all.count > 2 %}<img class="default-img" src="{{article.last_image}}" alt="" /> {% endif %}</a></figure>
 											</div>
 											<div class="col-md-6 col-sm-6 col-xs-12">
                                                 {{article.texte_image|safe}}
 											</div>
 										</div>
+										{% endif %}
                                         {{article.texte_bottom|safe}}
 									</div>
 								</div>

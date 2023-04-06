@@ -38,7 +38,7 @@
                     <!-- Info List -->
 					<ul class="info-list">
                         <li><a href="{% url 'core:contact'  %}" style="color: #E6AF2E;" >اتصل بنا </a></li>
-						{% comment %} <li class="quote"><a href=""> انضم إلينا</a></li> {% endcomment %}
+						<li class="quote"><a href="{% url 'core:recruiting'  %}"> انضم إلينا</a></li>
                     </ul>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                                                 <li class="dropdown"><a href="{{node.get_absolute_url}}"> {{node.name}}</a>
                                                     <ul>
                                                         {% for sub_cat in node.children.all %}
-                                                            {% if not sub_cat.is_leaf_node %}
+                                                            {% comment %} {% if not sub_cat.is_leaf_node %}
                                                                 <li class="dropdown"><a href="{{sub_cat.get_absolute_url}}"> {{sub_cat.name}}</a>
                                                                     <ul>
                                                                         {% for child in sub_cat.children.all %}
@@ -93,7 +93,8 @@
                                                                 </li>
                                                             {% else %}
                                                                 <li><a href="{{sub_cat.get_absolute_url}}">  {{ sub_cat.name }}</a></li>
-                                                            {% endif %} 
+                                                            {% endif %}  {% endcomment %}
+                                                            <li><a href="{{sub_cat.get_absolute_url}}">  {{ sub_cat.name }}</a></li>
                                                         {% endfor %}
                                                     </ul>
                                                 </li>

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+ <!--Page Title-->
+ <section class="page-title" style="background-image:url({% static 'images/background/5.png' %}); transform: scaleX(-1);">
+	<div class="auto-container">
+		<h2>معلومات عنا</h2>
+		<ul class="page-breadcrumb" dir="rtl">
+			<li class="page-breadcrumb" dir="rtl">معلومات عنا  </li>
+			<li dir="rtl"><a href="{% url 'core:index' %}">الرئيسية</a></li>
+		</ul>
+	</div>
+</section>
+<!--End Page Title-->
+{% for about  in  abouts %}
+	<section class="story-section">
+		<div class="auto-container">
+			<div class="row clearfix">
+				
+				<!-- Content Column -->
+				<div class="content-column col-lg-8 col-md-12 col-sm-12">
+					<div class="inner-column">
+						<p style="color:#242424;">{{about.about_high|safe}} </p>
+					</div>
+				</div>
+				<!-- Image Column -->
+				<div class="image-column col-lg-4 col-md-12 col-sm-12">
+					<div class="inner-column">
+						<div class="image">
+							<img src="{{about.image_high.url}}" alt="" style="margin-top:40px;" /> 
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+	
+    <section class="mission-section" >
+		<div class="auto-container">
+			<div class="row clearfix">
+				
+				<!-- Image Column -->
+				<div class="image-column col-xl-3 col-lg-4 col-md-12 col-sm-12">
+					<div class="inner-column">
+						<div class="image mt-3">
+                            <img src="{{about.image_low.url}}" alt="{{business.name}}" />
+						</div>
+					</div>
+				</div>
+				
+				<!-- Content Column -->
+				<div class="content-column col-xl-9 col-lg-8 col-md-12 col-sm-12">
+					<div class="inner-column">
+					{{about.about_low|safe}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	
+{% endfor %}
+{% endblock content %}
