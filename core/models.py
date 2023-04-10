@@ -111,7 +111,7 @@ class Job(models.Model):
     slug        = models.SlugField()
     description = tinymce_models.HTMLField(verbose_name='experience', null=True, blank=True)
     type        = models.CharField(choices=JOB_TYPE_CHOICES, default="TEMPORARY",max_length= 20, verbose_name=_("Job type")) 
-    tags        = models.ManyToManyField(Tag, verbose_name=_("tags"), null=True, blank=True)
+    tags        = models.ManyToManyField(Tag, verbose_name=_("tags"),  blank=True)
     budget      = models.DecimalField( max_digits=10, decimal_places=2, null=True, blank=True)
     duration    = models.IntegerField(verbose_name=_("Number of days"), null=True, blank=True)
     expiration  = models.DateField(blank=True, null=True)

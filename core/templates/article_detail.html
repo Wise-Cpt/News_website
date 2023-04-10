@@ -73,11 +73,28 @@
 			<div class="sec-title centered">
 				<h2>  اقرأ أيضًا</h2>
 			</div>
-			<div class="row clearfix">
+			<div class="row clearfix owl-carousel">
 				{% for article in related_articles %}	
 					{% include 'partials/article_card.html' %}
 				{% endfor %}
 			</div>
 		</div>
 	</section>
+	
 {% endblock content %}
+{% block script %}
+
+<script>
+var owl = $('.owl-carousel');
+owl.owlCarousel({
+    items:4, 
+  // items change number for slider display on desktop
+  
+	loop:true,
+    margin:10,
+    autoplay:true,
+    autoplayTimeout:1000,
+    autoplayHoverPause:true
+});
+</script>
+{% endblock script %}
