@@ -3146,6 +3146,7 @@ img{
 	font-weight:500;
 	line-height:1.3em;
 	margin-bottom:18px;
+	margin-right: 15px;
 }
 
 .gallery-item .overlay-inner .content h3 a{
@@ -5850,6 +5851,7 @@ img{
 .sidebar .popular-posts .post .post-thumb img{
 	display:block;
 	width:100%;
+	height: 60px;
 	transition:all 0.3s ease;
 	-moz-transition:all 0.3s ease;
 	-webkit-transition:all 0.3s ease;
