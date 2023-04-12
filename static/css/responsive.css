@@ -795,8 +795,11 @@
 	
 	.page-title{
 		padding:50px 0px;
+		top: -61px;
 	}
-	
+	.page-title .auto-container{ 
+		top: 30px;
+	}
 	.main-slider .owl-nav{
 		display:none;	
 	}
@@ -879,7 +882,8 @@
 	}
 
 	.sidebar-page-container{
-		padding: 60px 0px 0px;
+		/* padding: 60px 0px 0px; */
+		padding: 0px 0px 0px;
 	}
 	
 }

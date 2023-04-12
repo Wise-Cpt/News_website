@@ -149,7 +149,7 @@
 			<div class="sec-title centered">
 				<h2>اقرء أيضًا</h2>
 			</div>
-			<div class="row clearfix owl-carousel">
+			<div class="row clearfix owl-carousel" >
 			{% comment %} <div class="row clearfix"> {% endcomment %}
 					{% for article in homepage_card_articles %}	
 						{% include 'partials/article_card.html' %}
@@ -170,7 +170,9 @@ owl.owlCarousel({
     items:4, 
   // items change number for slider display on desktop
   
-	loop:true,
+	loop:false,
+	rewind: true,
+
     margin:10,
     autoplay:true,
     autoplayTimeout:1000,
