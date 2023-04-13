@@ -1490,7 +1490,8 @@ img{
 	font-size: 36px;
 	line-height: 40px;
 	cursor: pointer;
-	color:#E6AF2E;
+	/* color:#E6AF2E; */
+	color:#ffffff;
 	padding:20px 0px 0px;
 	display: none;
 }
